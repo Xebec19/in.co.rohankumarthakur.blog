@@ -1,0 +1,10 @@
+.navBand {
+  background-color: #f3ca20;
+}
+
+.navIconsList {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f3ca20;
+  color: #000;
+}
