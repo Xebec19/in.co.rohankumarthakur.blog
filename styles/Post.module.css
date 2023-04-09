@@ -1,0 +1,15 @@
+.main {
+  max-width: 992px;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  margin: 2rem 0rem;
+}
