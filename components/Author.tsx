@@ -2,12 +2,12 @@ import React from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Box, Divider, IconButton } from "@mui/material";
+import { Box, Divider, IconButton, Paper, Typography } from "@mui/material";
 import styles from "./Author.module.css";
 
 const Author = () => {
   return (
-    <Box>
+    <Box className={styles.container}>
       <Box className={styles.socialLinks}>
         <IconButton>
           <GitHubIcon
@@ -32,6 +32,19 @@ const Author = () => {
         </IconButton>
       </Box>
       <Divider />
+      <Box>
+        <Paper variant="outlined" square className={styles.about}>
+          <Typography variant="h5" component="h5" color="textSecondary">
+            About
+          </Typography>
+          <Typography variant="body1" component="div" color="body.secondary">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste,
+            itaque a. Perspiciatis, nihil, dicta saepe eaque ducimus odio iure
+            aliquid tempora dignissimos quod a repellat obcaecati, sunt at esse
+            consequuntur?
+          </Typography>
+        </Paper>
+      </Box>
     </Box>
   );
 };

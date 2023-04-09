@@ -3,3 +3,8 @@
   margin: auto;
   margin-top: 5rem;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+}

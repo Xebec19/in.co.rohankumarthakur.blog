@@ -1,3 +1,7 @@
+.container {
+  display: none;
+}
+
 .socialLinks {
   justify-content: space-between;
   display: flex;
@@ -8,4 +12,15 @@
 }
 .socialItem:hover {
   color: #f3ca20;
+}
+
+.about {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    display: inherit;
+  }
 }
