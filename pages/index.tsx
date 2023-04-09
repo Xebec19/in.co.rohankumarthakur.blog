@@ -14,9 +14,84 @@ import {
   List,
   ListItem,
 } from "@mui/material";
-import Author from "@/components/Author";
 import { formatDistance, subDays } from "date-fns";
+import Author from "@/components/Author";
 import { Typography } from "@material-ui/core";
+import PostList from "@/components/PostList";
+import Footer from "@/components/Footer";
+
+const LIST = [
+  {
+    _id: 123,
+    title:
+      "Redux Toolkit for Beginners: Quick and Easy Setup in 3 Simple Steps",
+    createdOn: subDays(new Date(), 3),
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi illo aut inventore exercitationem, quis magni aliquid perspiciatis, odio delectus dolores voluptatem possimus reprehenderit quidem voluptatum culpa blanditiis quam a corrupti.",
+    tags: ["react", "redux", "web-development"],
+    comments: [
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+    ],
+  },
+  {
+    _id: 123,
+    title:
+      "Redux Toolkit for Beginners: Quick and Easy Setup in 3 Simple Steps",
+    createdOn: subDays(new Date(), 3),
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi illo aut inventore exercitationem, quis magni aliquid perspiciatis, odio delectus dolores voluptatem possimus reprehenderit quidem voluptatum culpa blanditiis quam a corrupti.",
+    tags: ["react", "redux", "web-development"],
+    comments: [
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+    ],
+  },
+  {
+    _id: 123,
+    title:
+      "Redux Toolkit for Beginners: Quick and Easy Setup in 3 Simple Steps",
+    createdOn: subDays(new Date(), 3),
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi illo aut inventore exercitationem, quis magni aliquid perspiciatis, odio delectus dolores voluptatem possimus reprehenderit quidem voluptatum culpa blanditiis quam a corrupti.",
+    tags: ["react", "redux", "web-development"],
+    comments: [
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+    ],
+  },
+  {
+    _id: 123,
+    title:
+      "Redux Toolkit for Beginners: Quick and Easy Setup in 3 Simple Steps",
+    createdOn: subDays(new Date(), 3),
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi illo aut inventore exercitationem, quis magni aliquid perspiciatis, odio delectus dolores voluptatem possimus reprehenderit quidem voluptatum culpa blanditiis quam a corrupti.",
+    tags: ["react", "redux", "web-development"],
+    comments: [
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+    ],
+  },
+  {
+    _id: 123,
+    title:
+      "Redux Toolkit for Beginners: Quick and Easy Setup in 3 Simple Steps",
+    createdOn: subDays(new Date(), 3),
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi illo aut inventore exercitationem, quis magni aliquid perspiciatis, odio delectus dolores voluptatem possimus reprehenderit quidem voluptatum culpa blanditiis quam a corrupti.",
+    tags: ["react", "redux", "web-development"],
+    comments: [
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+      { _id: 123, author: "Rohan", comment: "hello world!" },
+    ],
+  },
+];
 
 export default function Home() {
   return (
@@ -35,36 +110,15 @@ export default function Home() {
         <Grid container spacing={2} className={styles.main}>
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
-              {"Rohan's Blogs"}
+              {"Blogs"}
             </Typography>
-            <List>
-              <ListItem>
-                <Card>
-                  <CardHeader
-                    title="Redux Toolkit for Beginners: Quick and Easy Setup in 3 Simple Steps"
-                    subheader={formatDistance(
-                      subDays(new Date(), 3),
-                      new Date(),
-                      { addSuffix: true }
-                    )}
-                  />
-                  <CardContent>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, omnis porro dignissimos eius quia id. Quo fuga
-                    reprehenderit voluptatem accusamus impedit iusto ipsa ipsam
-                    vero aliquid natus, dolorum dicta ex?
-                  </CardContent>
-                  <CardActions>
-                    <Button>View Full Story</Button>
-                  </CardActions>
-                </Card>
-              </ListItem>
-            </List>
+            <PostList list={LIST} />
           </Grid>
           <Grid item md={4} xs={12}>
             <Author />
           </Grid>
         </Grid>
+        <Footer />
       </main>
     </>
   );

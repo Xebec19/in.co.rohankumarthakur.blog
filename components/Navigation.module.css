@@ -1,5 +1,6 @@
 .navBand {
   background-color: #f3ca20;
+  box-sizing: border-box;
 }
 
 .navIconsList {
@@ -7,4 +8,22 @@
   justify-content: space-between;
   background-color: #f3ca20;
   color: #000;
+}
+
+.navFront {
+  display: flex;
+  align-items: center;
+}
+
+.searchBox {
+  display: none !important;
+}
+
+@media only screen and (min-width: 600px) {
+  .profilePic {
+    margin-right: 2rem;
+  }
+  .searchBox {
+    display: inherit !important;
+  }
 }
