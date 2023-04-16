@@ -8,5 +8,11 @@ const PostSchema = new mongoose.Schema({
   comments: [Object],
 });
 
-module.exports =
-  mongoose.models.PostSchema || mongoose.model("Post", PostSchema);
+var model;
+if (mongoose.models.PostSchema) {
+  model = mongoose.models.PostSchema;
+} else {
+  model = mongoose.model("Post", PostSchema);
+}
+
+export default model;
