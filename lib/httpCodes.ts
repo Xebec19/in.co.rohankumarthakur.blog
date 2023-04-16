@@ -12,3 +12,5 @@ const HTTP_CODES = {
   TOO_MANY_REQUEST: 429,
   INTERNAL_SERVER_ERROR: 500,
 };
+
+export default HTTP_CODES;
