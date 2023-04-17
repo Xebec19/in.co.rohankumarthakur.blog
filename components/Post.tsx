@@ -34,7 +34,7 @@ const Post: React.FC<{ item: IPost }> = ({ item }) => {
             addSuffix: true,
           })}
         />
-        <CardMedia>
+        <CardMedia className={styles.cardMedia}>
           <Image
             loader={ImgLoader}
             src={item.image}

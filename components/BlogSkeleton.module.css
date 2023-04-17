@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+}
+.details {
+  display: flex;
+}
+.content {
+  flex: 1 0 auto;
+}
+.cover {
+  width: 151;
+}

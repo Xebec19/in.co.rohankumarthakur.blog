@@ -18,6 +18,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import { stringAvatar } from "@/utils/data-format";
 import { IPostItem } from "@/interfaces";
 import SkeletonCard from "@/components/SkeletonCard";
+import React, { useEffect } from "react";
+import MDRenderer from "@/components/MDRenderer";
+import BlogSkeleton from "@/components/BlogSkeleton";
 
 const CommentInput = ({ handlePush }) => {
   return <></>;
@@ -47,31 +50,10 @@ const Comments = ({ commentList }) => {
   );
 };
 
-const Body = () => {
-  return (
-    <>
-      <p>
-        Writing "Hello, world!" in Rust is a straightforward task. First, open
-        your preferred code editor and create a new file. Then, type or copy and
-        paste the following code into the file:
-      </p>
-      <pre>
-        <code>fn main() {'println!("Hello, world!");'}</code>
-      </pre>
-      <p>
-        This is the basic structure of a Rust program. The{" "}
-        <code>fn main()</code> line indicates the starting point of the program,
-        and <code>println!("Hello, world!")</code> is the instruction to print
-        the message "Hello, world!" to the console. Once you have typed this
-        code, save the file with a .rs extension, such as "hello.rs". Finally,
-        navigate to the directory where the file is saved in your terminal, and
-        use the <code>rustc</code> command to compile the program. Once
-        compiled, you can run the program by entering <code>./hello</code> in
-        the terminal, and the message "Hello, world!" should be printed to the
-        console.
-      </p>
-    </>
-  );
+const Body: React.FC<{ source: string }> = ({ source }) => {
+  useEffect(() => {});
+
+  return <></>;
 };
 
 const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
@@ -115,7 +97,11 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
               </Box>
             </Box>
             <Box className={styles.content}>
-              <Body />
+              {post?.source?.String ? (
+                <MDRenderer source={post?.source?.String} />
+              ) : (
+                <BlogSkeleton />
+              )}
             </Box>
             <Box>{/* <Comments commentList={post.comments} /> */}</Box>
           </Box>
