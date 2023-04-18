@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import styles from "../styles/MDRenderer.module.css";
+import ReactMarkdown from "react-markdown";
+import SkeletonCard from "./BlogSkeleton";
+import BlogSkeleton from "./BlogSkeleton";
 
 const MDRenderer: React.FC<{ source: string }> = ({ source }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +26,11 @@ const MDRenderer: React.FC<{ source: string }> = ({ source }) => {
     fetchPost();
   }, []);
 
-  return <div>MDRenderer works!</div>;
+  if (isLoading) {
+    return <BlogSkeleton />;
+  }
+
+  return <ReactMarkdown className={styles.container}>{post}</ReactMarkdown>;
 };
 
 export default React.memo(MDRenderer);

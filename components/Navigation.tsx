@@ -3,6 +3,7 @@ import { AppBar, Avatar, Box, IconButton, Toolbar } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import EmailIcon from "@mui/icons-material/Email";
 import styles from "./Navigation.module.css";
+import Link from "next/link";
 
 const Navigation = () => {
   return (
@@ -10,12 +11,14 @@ const Navigation = () => {
       <AppBar className={styles.navBand}>
         <Toolbar className={styles.navIconsList}>
           <Box className={styles.navFront}>
-            <Avatar
-              alt="Rohan's pic"
-              src="/author.png"
-              className={styles.profilePic}
-            />
-            <TextField
+            <Link className={styles.link} href={"/"}>
+              <Avatar
+                alt="Rohan's pic"
+                src="/author.png"
+                className={styles.profilePic}
+              />
+            </Link>
+            {/* <TextField
               className={styles.searchBox}
               aria-label="Search blogs"
               size="small"
@@ -28,9 +31,9 @@ const Navigation = () => {
                   </InputAdornment>
                 ),
               }}
-            />
+            /> */}
           </Box>
-          <EmailIcon />
+          {/* <EmailIcon /> */}
         </Toolbar>
       </AppBar>
     </Box>

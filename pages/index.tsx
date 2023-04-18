@@ -29,7 +29,7 @@ export default function Home({ posts }) {
       </Head>
       <main>
         <Navigation />
-        <Grid container spacing={2} className={styles.main}>
+        <Grid container spacing={0} className={styles.main}>
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}

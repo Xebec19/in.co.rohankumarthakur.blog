@@ -16,7 +16,7 @@ const PostList = ({ list }) => {
   return (
     <List>
       {list.map((blog, key) => (
-        <ListItem key={key}>
+        <ListItem disableGutters key={key}>
           <Post item={blog} />
         </ListItem>
       ))}

@@ -3,6 +3,9 @@ import Navigation from "@/components/Navigation";
 import {
   Avatar,
   Box,
+  Card,
+  CardContent,
+  CardHeader,
   Chip,
   List,
   ListItem,
@@ -21,6 +24,8 @@ import SkeletonCard from "@/components/SkeletonCard";
 import React, { useEffect } from "react";
 import MDRenderer from "@/components/MDRenderer";
 import BlogSkeleton from "@/components/BlogSkeleton";
+import { CardMedia } from "@material-ui/core";
+import Image from "next/image";
 
 const CommentInput = ({ handlePush }) => {
   return <></>;
@@ -57,6 +62,30 @@ const Body: React.FC<{ source: string }> = ({ source }) => {
 };
 
 const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
+  console.log({ post });
+
+  if (!post) {
+    return (
+      <main>
+        <Navigation />
+        <Box className={styles.main}>
+          <Card className={styles.card}>
+            <CardHeader title="No Post Found" className={styles.title} />
+            <CardMedia className={styles.media}>
+              <Image
+                src="/undraw_No_data_re_kwbl.png"
+                alt="No post found"
+                width={325}
+                height={325}
+                priority={true}
+              />
+            </CardMedia>
+          </Card>
+        </Box>
+        <Footer />
+      </main>
+    );
+  }
   return (
     <>
       <Head>
@@ -136,45 +165,15 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        post: {
-          id: "9b588811-c8d2-47e4-bc86-30c933520731",
-          title: "Future of web development",
-          image_url: {
-            String:
-              "https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg",
-            Valid: true,
-          },
-          image_reference: {
-            String:
-              "https://unsplash.com/@lautaroandreani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
-            Valid: true,
-          },
-          created_at: {
-            Time: "2023-04-16T19:23:09.307508Z",
-            Valid: true,
-          },
-          updated_at: {
-            Time: "2023-04-16T19:23:09.307508Z",
-            Valid: true,
-          },
-          description: {
-            String:
-              "Web development has come a long way since the early days of static HTML pages. Today, the web is a dynamic and interactive platform that allows for real-time communication, multimedia content, and complex data processing. As technology continues to evolve at a rapid pace, the future of web development is poised to bring even more exciting innovations to the table.",
-            Valid: true,
-          },
-          source: {
-            String:
-              "https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/FUTURE_OF_WEB_DEVELOPMENT.md",
-            Valid: true,
-          },
-          tags: ["web development"],
-        },
+        post,
       },
     };
   } catch (error) {
     console.log(error);
     return {
-      props: {},
+      props: {
+        post: null,
+      },
     };
   }
 }

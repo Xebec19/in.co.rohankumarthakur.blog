@@ -13,3 +13,14 @@
 .content {
   margin: 2rem 0rem;
 }
+.card {
+  max-width: 345;
+}
+.title {
+  text-align: center;
+}
+.media {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
