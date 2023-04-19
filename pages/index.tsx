@@ -34,7 +34,7 @@ export default function Home({ posts }) {
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}
             </Typography>
-            {posts.length > 0 ? (
+            {posts && posts.length > 0 && typeof posts === "object" ? (
               <PostList list={posts} />
             ) : (
               <SkeletonList limit={10} />

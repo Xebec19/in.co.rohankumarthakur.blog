@@ -13,7 +13,7 @@ const Author = () => {
         <Link
           href="https://github.com/Xebec19"
           target="_blank"
-          className={styles.link}
+          className={`${styles.link} github-link`}
         >
           <IconButton>
             <GitHubIcon
@@ -26,7 +26,7 @@ const Author = () => {
         <Link
           href="https://www.linkedin.com/in/rohan-kumar-thakur/"
           target="_blank"
-          className={styles.link}
+          className={`${styles.link} linkedin-link`}
         >
           <IconButton>
             <LinkedInIcon
@@ -39,7 +39,7 @@ const Author = () => {
         <Link
           href="https://twitter.com/tweets_thakur"
           target="_blank"
-          className={styles.link}
+          className={`${styles.link} twitter-link`}
         >
           <IconButton>
             <TwitterIcon

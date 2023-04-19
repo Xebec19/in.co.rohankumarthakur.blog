@@ -1,68 +1,40 @@
+import React, { useEffect } from "react";
+import Head from "next/head";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import Chip from "@mui/material/Chip";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import CardMedia from "@mui/material/CardMedia";
+import Image from "next/image";
+import { format } from "date-fns";
+
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Chip,
-  List,
-  ListItem,
-  ListItemText,
-  TextareaAutosize,
-} from "@mui/material";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import styles from "../styles/Post.module.css";
-import Head from "next/head";
-import { format, formatRelative, subDays } from "date-fns";
-import { ListSubheader, Typography } from "@mui/material";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ShareIcon from "@mui/icons-material/Share";
-import { stringAvatar } from "@/utils/data-format";
 import { IPostItem } from "@/interfaces";
 import SkeletonCard from "@/components/SkeletonCard";
-import React, { useEffect } from "react";
 import MDRenderer from "@/components/MDRenderer";
 import BlogSkeleton from "@/components/BlogSkeleton";
-import { CardMedia } from "@material-ui/core";
-import Image from "next/image";
+import useSharer from "@/hooks/useSharer";
 
-const CommentInput = ({ handlePush }) => {
-  return <></>;
-};
-
-const Comments = ({ commentList }) => {
-  const handlePush = ({ author, comment, date }) => {
-    // todo it pushes new comment to source
-  };
-  return (
-    <>
-      <CommentInput handlePush={handlePush} />
-      <List subheader={<ListSubheader component="div">Comments</ListSubheader>}>
-        {commentList.map((comment, index) => (
-          <ListItem key={index}>
-            <ListItemIcon>
-              <Avatar {...stringAvatar(comment.author)} />
-            </ListItemIcon>
-            <ListItemText
-              primary={comment.comment}
-              secondary={format(new Date(2014, 1, 11), "MM/dd/yyyy")}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </>
-  );
-};
-
-const Body: React.FC<{ source: string }> = ({ source }) => {
-  useEffect(() => {});
-
-  return <></>;
-};
+const SHARER_TEXT =
+  "Excited to share this insightful article on web development!";
+const SHARER_TITLE =
+  "Discover the Latest in Web Development with This Informative Article";
+const DEFAULT_DESCRIPTION = `Welcome to my personal blogging website! 
+As a web developer with 2 years of experience,
+I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
+of blog posts on web development, software hacks, and other DIY projects. Whether you're a 
+seasoned pro or just starting out, my blog is the perfect place to learn and grow your skills. 
+Stay up-to-date with the latest trends and techniques in the tech world and join the 
+conversation by leaving your thoughts and comments.`;
 
 const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
-  console.log({ post });
+  let { twitterSharer, customSharer } = useSharer();
 
   if (!post) {
     return (
@@ -89,22 +61,21 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
   return (
     <>
       <Head>
-        <title>Rohan Thakur</title>
+        <title>{post.title ? post.title : "Rohan Kumar Thakur"}</title>
         <meta
           name="description"
           content={
-            post?.description
-              ? post.description.String
-              : `Welcome to my personal blogging website! As a web developer with 2 years of experience,
-          I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
-          of blog posts on web development, software hacks, and other DIY projects. Whether you're a 
-          seasoned pro or just starting out, my blog is the perfect place to learn and grow your skills. 
-          Stay up-to-date with the latest trends and techniques in the tech world and join the 
-          conversation by leaving your thoughts and comments.`
+            post?.description ? post.description.String : DEFAULT_DESCRIPTION
           }
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Rohan Kumar Thakur" />
         <link rel="icon" href="/favicon.ico" />
+
+        <meta property="og:title" content={post.title} />
+        <meta property="og:image" content={post.image_url.String} />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={post.description.String} />
       </Head>
       <main>
         <Navigation />
@@ -113,17 +84,15 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
             <Typography variant="h3" component="div" gutterBottom>
               {post.title}
             </Typography>
-            <Box className={styles.metaInfo}>
-              <Box>
-                {post?.tags?.map((tag, index) => (
-                  <Chip key={index} sx={{ m: 1 }} label={tag} />
-                ))}
-              </Box>
-              <Box>
-                <Typography variant="body1" color="textSecondary">
-                  {format(new Date(post.created_at.Time), "MMM dd yyyy")}
-                </Typography>
-              </Box>
+            <Box>
+              {post?.tags?.map((tag, index) => (
+                <Chip key={index} sx={{ m: 1 }} label={tag} />
+              ))}
+            </Box>
+            <Box>
+              <Typography variant="body1" color="textSecondary">
+                {format(new Date(post.created_at.Time), "MMM dd yyyy")}
+              </Typography>
             </Box>
             <Box className={styles.content}>
               {post?.source?.String ? (
@@ -131,6 +100,27 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
               ) : (
                 <BlogSkeleton />
               )}
+            </Box>
+            <Box>
+              <IconButton
+                className="twitter-share-button"
+                onClick={() =>
+                  twitterSharer(SHARER_TEXT, window.location.href, [
+                    "webdevelopment",
+                    "coding",
+                  ])
+                }
+              >
+                <TwitterIcon />
+              </IconButton>
+              <IconButton
+                className="custom-share-button"
+                onClick={() =>
+                  customSharer(SHARER_TITLE, SHARER_TEXT, window.location.href)
+                }
+              >
+                <ShareIcon />
+              </IconButton>
             </Box>
             <Box>{/* <Comments commentList={post.comments} /> */}</Box>
           </Box>
