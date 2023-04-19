@@ -1,5 +1,6 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { AppBar, Avatar, Box, IconButton, Toolbar } from "@mui/material";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
 import SearchIcon from "@mui/icons-material/Search";
 import EmailIcon from "@mui/icons-material/Email";
 import styles from "./Footer.module.css";

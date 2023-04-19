@@ -6,14 +6,13 @@ import BlogSkeleton from "./BlogSkeleton";
 
 const MDRenderer: React.FC<{ source: string }> = ({ source }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState("");
 
   const fetchPost = async () => {
     try {
       let response = await fetch(source);
-      response = await response.text();
-      console.log(response);
-      setPost(response);
+      let postBody = await response.text();
+      setPost(postBody);
     } catch (error) {
       // todo notification
       console.log(error);
@@ -24,7 +23,7 @@ const MDRenderer: React.FC<{ source: string }> = ({ source }) => {
 
   useEffect(() => {
     fetchPost();
-  }, []);
+  });
 
   if (isLoading) {
     return <BlogSkeleton />;

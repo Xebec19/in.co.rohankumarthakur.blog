@@ -1,8 +1,4 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import classes from "./BlogSkeleton.module.css";
 import { Paper, Skeleton } from "@mui/material";
 
 export default function SkeletonCard() {

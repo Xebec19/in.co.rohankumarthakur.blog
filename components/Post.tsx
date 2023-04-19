@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-} from "@mui/material";
-import { formatDistance, subDays } from "date-fns";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import { formatDistance } from "date-fns";
 import Link from "next/link";
 import Image from "next/image";
 import { ImgLoader } from "@/lib/imageLoader";

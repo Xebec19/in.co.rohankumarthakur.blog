@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
+import { GetStaticProps } from "next";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -20,6 +21,7 @@ import SkeletonCard from "@/components/SkeletonCard";
 import MDRenderer from "@/components/MDRenderer";
 import BlogSkeleton from "@/components/BlogSkeleton";
 import useSharer from "@/hooks/useSharer";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 const SHARER_TEXT =
   "Excited to share this insightful article on web development!";
@@ -111,7 +113,7 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
                   ])
                 }
               >
-                <TwitterIcon />
+                <TwitterIcon fontSize="large" className={styles.socialItem} />
               </IconButton>
               <IconButton
                 className="custom-share-button"
@@ -119,7 +121,7 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
                   customSharer(SHARER_TITLE, SHARER_TEXT, window.location.href)
                 }
               >
-                <ShareIcon />
+                <ShareIcon fontSize="large" className={styles.socialItem} />
               </IconButton>
             </Box>
             <Box>{/* <Comments commentList={post.comments} /> */}</Box>
@@ -135,9 +137,9 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetStaticProps = async (context) => {
   try {
-    let { post: postId } = context.params;
+    let { postId } = context.params as Params;
 
     let url = process.env.BASE_URL + "posts/" + postId;
     let response = await fetch(url, {
@@ -146,12 +148,12 @@ export async function getServerSideProps(context) {
         "Content-Type": "application/json",
       },
     });
-    response = await response.json();
+    let data = await response.json();
     if (!response.status) {
       throw new Error("Post not found!");
     }
 
-    let post: IPostItem = response?.payload;
+    let post: IPostItem = data?.payload;
 
     return {
       props: {
@@ -161,11 +163,9 @@ export async function getServerSideProps(context) {
   } catch (error) {
     console.log(error);
     return {
-      props: {
-        post: null,
-      },
+      notFound: true,
     };
   }
-}
+};
 
 export default PostPage;

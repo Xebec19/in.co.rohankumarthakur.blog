@@ -8,9 +8,9 @@ import Typography from "@mui/material/Typography";
 import PostList from "@/components/PostList";
 import Footer from "@/components/Footer";
 import SkeletonList from "@/components/SkeletonList";
-import { IPost, IResponse } from "@/interfaces";
+import { IPost, IPostItem, IResponse } from "@/interfaces";
 
-export default function Home({ posts }) {
+const Home: React.FC<{ posts: IPost[] }> = ({ posts }) => {
   return (
     <>
       <Head>
@@ -48,7 +48,7 @@ export default function Home({ posts }) {
       </main>
     </>
   );
-}
+};
 
 export async function getStaticProps() {
   try {
@@ -59,13 +59,13 @@ export async function getStaticProps() {
         "Content-Type": "application/json",
       },
     });
-    response = await response.json();
+    let data = await response.json();
 
-    if (!response.status) {
+    if (!data.status) {
       throw new Error("no post available!");
     }
 
-    let posts = response?.payload?.map((post) => ({
+    let posts = data?.payload?.map((post: IPostItem) => ({
       id: post.id,
       title: post.title,
       createdAt: post.created_at.Time,
@@ -84,7 +84,9 @@ export async function getStaticProps() {
   } catch (error) {
     console.log(error);
     return {
-      props: {},
+      notFound: true,
     };
   }
 }
+
+export default Home;
