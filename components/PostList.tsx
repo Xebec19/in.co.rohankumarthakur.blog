@@ -1,18 +1,10 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-} from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
 import Post from "./Post";
+import { IPost } from "@/interfaces";
 
-const PostList = ({ list }) => {
+const PostList: React.FC<{ list: IPost[] }> = ({ list }) => {
   return (
     <List>
       {list.map((blog, key) => (
