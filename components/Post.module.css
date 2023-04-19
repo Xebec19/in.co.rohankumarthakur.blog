@@ -1,4 +1,23 @@
 .link {
   text-decoration: none;
   color: inherit;
+  max-width: 100%;
+}
+
+.card {
+  width: 100%;
+}
+
+.cardMedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.content {
+  font-size: 1.2rem;
 }

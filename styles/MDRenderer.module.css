@@ -1,0 +1,24 @@
+.container img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.container h1 {
+  font-size: 2rem;
+}
+
+.container h2 {
+  font-size: 1.8rem;
+}
+
+.container h3 {
+  font-size: 1.5rem;
+}
+
+.container p {
+  font-size: 1.2rem;
+}
+
+.container code {
+  font-size: 1.2rem;
+}

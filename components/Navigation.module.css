@@ -19,6 +19,11 @@
   display: none !important;
 }
 
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
 @media only screen and (min-width: 600px) {
   .profilePic {
     margin-right: 2rem;

@@ -27,14 +27,15 @@ interface IPost {
 const Post: React.FC<{ item: IPost }> = ({ item }) => {
   return (
     <Link href={`/${item.id}`} className={styles.link}>
-      <Card variant="outlined">
+      <Card variant="outlined" className={styles.card}>
         <CardHeader
+          className={styles.header}
           title={item.title}
           subheader={formatDistance(new Date(item.createdAt), new Date(), {
             addSuffix: true,
           })}
         />
-        <CardMedia>
+        <CardMedia className={styles.cardMedia}>
           <Image
             loader={ImgLoader}
             src={item.image}
@@ -44,8 +45,7 @@ const Post: React.FC<{ item: IPost }> = ({ item }) => {
             quality={45}
           />
         </CardMedia>
-        <CardContent>{item.description}</CardContent>
-        <CardActions></CardActions>
+        <CardContent className={styles.content}>{item.description}</CardContent>
       </Card>
     </Link>
   );

@@ -29,12 +29,12 @@ export default function Home({ posts }) {
       </Head>
       <main>
         <Navigation />
-        <Grid container spacing={2} className={styles.main}>
+        <Grid container spacing={0} className={styles.main}>
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}
             </Typography>
-            {posts.length > 0 ? (
+            {posts && posts.length > 0 && typeof posts === "object" ? (
               <PostList list={posts} />
             ) : (
               <SkeletonList limit={10} />

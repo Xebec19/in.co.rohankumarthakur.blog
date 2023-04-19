@@ -2,6 +2,7 @@
   max-width: 992px;
   margin: auto;
   margin-top: 5rem;
+  box-sizing: border-box;
 }
 
 .footer {
