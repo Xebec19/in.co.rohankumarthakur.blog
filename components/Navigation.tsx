@@ -10,15 +10,15 @@ const Navigation = () => {
     <Box>
       <AppBar className={styles.navBand}>
         <Toolbar className={styles.navIconsList}>
-          <Box className={styles.navFront}>
-            <Link className={styles.link} href={"/"}>
-              <Avatar
-                alt="Rohan's pic"
-                src="/author.png"
-                className={styles.profilePic}
-              />
-            </Link>
-            {/* <TextField
+          {/* <Box className={styles.navFront}> */}
+          <Link className={styles.link} href={"/"}>
+            <Avatar
+              alt="Rohan's pic"
+              src="/author.png"
+              className={styles.profilePic}
+            />
+          </Link>
+          {/* <TextField
               className={styles.searchBox}
               aria-label="Search blogs"
               size="small"
@@ -32,7 +32,7 @@ const Navigation = () => {
                 ),
               }}
             /> */}
-          </Box>
+          {/* </Box> */}
           {/* <EmailIcon /> */}
         </Toolbar>
       </AppBar>

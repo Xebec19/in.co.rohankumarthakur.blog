@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import Navigation from "@/components/Navigation";
 import Grid from "@mui/material/Grid";
-import { subDays } from "date-fns";
 import Author from "@/components/Author";
 import Typography from "@mui/material/Typography";
 import PostList from "@/components/PostList";
@@ -10,26 +9,25 @@ import Footer from "@/components/Footer";
 import SkeletonList from "@/components/SkeletonList";
 import { IPost, IPostItem, IResponse } from "@/interfaces";
 
+const DESCRIPTION = `Welcome to my personal blogging website! As a web developer with 2 years of experience,
+I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
+of blog posts on web development, software hacks, and other DIY projects. Whether you're a 
+seasoned pro or just starting out, my blog is the perfect place to learn and grow your skills. 
+Stay up-to-date with the latest trends and techniques in the tech world and join the 
+conversation by leaving your thoughts and comments.`;
+
 const Home: React.FC<{ posts: IPost[] }> = ({ posts }) => {
   return (
     <>
       <Head>
         <title>Rohan Thakur</title>
-        <meta
-          name="description"
-          content="Welcome to my personal blogging website! As a web developer with 2 years of experience,
-          I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
-          of blog posts on web development, software hacks, and other DIY projects. Whether you're a 
-          seasoned pro or just starting out, my blog is the perfect place to learn and grow your skills. 
-          Stay up-to-date with the latest trends and techniques in the tech world and join the 
-          conversation by leaving your thoughts and comments."
-        />
+        <meta name="description" content={DESCRIPTION} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Navigation />
-        <Grid container spacing={0} className={styles.main}>
+        <Grid container spacing={0} className={styles.container}>
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}
@@ -80,6 +78,9 @@ export async function getStaticProps() {
       props: {
         posts,
       },
+      // Re-generate the post at most once per second
+      // if a request comes in
+      revalidate: 1,
     };
   } catch (error) {
     console.log(error);
