@@ -87,9 +87,13 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
               {post.title}
             </Typography>
             <Box>
-              {post?.tags?.map((tag, index) => (
-                <Chip key={index} sx={{ m: 1 }} label={tag} />
-              ))}
+              {post?.tags?.length && typeof post?.tags == "object" ? (
+                post?.tags?.map((tag, index) => (
+                  <Chip key={index} sx={{ m: 1 }} label={tag} />
+                ))
+              ) : (
+                <></>
+              )}
             </Box>
             <Box>
               <Typography variant="body1" color="textSecondary">
