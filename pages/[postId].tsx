@@ -22,6 +22,7 @@ import MDRenderer from "@/components/MDRenderer";
 import BlogSkeleton from "@/components/BlogSkeleton";
 import useSharer from "@/hooks/useSharer";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { environments } from "@/utils/environments";
 
 const SHARER_TEXT =
   "Excited to share this insightful article on web development!";
@@ -145,7 +146,7 @@ export const getServerSideProps: GetStaticProps = async (context) => {
   try {
     let { postId } = context.params as Params;
 
-    let url = process.env.BASE_URL + "posts/" + postId;
+    let url = environments.baseUrl + "posts/" + postId;
     let response = await fetch(url, {
       method: "GET",
       headers: {
