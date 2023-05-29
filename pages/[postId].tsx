@@ -23,18 +23,12 @@ import BlogSkeleton from "@/components/BlogSkeleton";
 import useSharer from "@/hooks/useSharer";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { environments } from "@/utils/environments";
+import { sharerPayload } from "@/config/share-text";
+import AdsContainer from "@/components/AdsContainer";
 
-const SHARER_TEXT =
-  "Excited to share this insightful article on web development!";
-const SHARER_TITLE =
-  "Discover the Latest in Web Development with This Informative Article";
-const DEFAULT_DESCRIPTION = `Welcome to my personal blogging website! 
-As a web developer with 2 years of experience,
-I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
-of blog posts on web development, software hacks, and other DIY projects. Whether you're a 
-seasoned pro or just starting out, my blog is the perfect place to learn and grow your skills. 
-Stay up-to-date with the latest trends and techniques in the tech world and join the 
-conversation by leaving your thoughts and comments.`;
+const SHARER_TEXT = sharerPayload.title;
+const SHARER_TITLE = sharerPayload.subtitle;
+const DEFAULT_DESCRIPTION = sharerPayload.description;
 
 const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
   let { twitterSharer, customSharer } = useSharer();
@@ -82,60 +76,69 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
       </Head>
       <main>
         <Navigation />
-        {post ? (
-          <Box className={styles.main}>
-            <Typography variant="h3" component="div" gutterBottom>
-              {post.title}
-            </Typography>
-            <Box>
-              {post?.tags?.length && typeof post?.tags == "object" ? (
-                post?.tags?.map((tag, index) => (
-                  <Chip key={index} sx={{ m: 1 }} label={tag} />
-                ))
-              ) : (
-                <></>
-              )}
-            </Box>
-            <Box>
-              <Typography variant="body1" color="textSecondary">
-                {format(new Date(post.created_at.Time), "MMM dd yyyy")}
+        <Box className={styles.main}>
+          <AdsContainer
+            data-ad-slot="5888974435"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+          {post ? (
+            <>
+              <Typography variant="h3" component="div" gutterBottom>
+                {post.title}
               </Typography>
-            </Box>
-            <Box className={styles.content}>
-              {post?.source?.String ? (
-                <MDRenderer source={post?.source?.String} />
-              ) : (
-                <BlogSkeleton />
-              )}
-            </Box>
-            <Box>
-              <IconButton
-                className="twitter-share-button"
-                onClick={() =>
-                  twitterSharer(SHARER_TEXT, window.location.href, [
-                    "webdevelopment",
-                    "coding",
-                  ])
-                }
-              >
-                <TwitterIcon fontSize="large" className={styles.socialItem} />
-              </IconButton>
-              <IconButton
-                className="custom-share-button"
-                onClick={() =>
-                  customSharer(SHARER_TITLE, SHARER_TEXT, window.location.href)
-                }
-              >
-                <ShareIcon fontSize="large" className={styles.socialItem} />
-              </IconButton>
-            </Box>
-            <Box>{/* <Comments commentList={post.comments} /> */}</Box>
-          </Box>
-        ) : (
-          <Box className={styles.main}>
+              <Box>
+                {post?.tags?.length && typeof post?.tags == "object" ? (
+                  post?.tags?.map((tag, index) => (
+                    <Chip key={index} sx={{ m: 1 }} label={tag} />
+                  ))
+                ) : (
+                  <></>
+                )}
+              </Box>
+              <Box>
+                <Typography variant="body1" color="textSecondary">
+                  {format(new Date(post.created_at.Time), "MMM dd yyyy")}
+                </Typography>
+              </Box>
+              <Box className={styles.content}>
+                {post?.source?.String ? (
+                  <MDRenderer source={post?.source?.String} />
+                ) : (
+                  <BlogSkeleton />
+                )}
+              </Box>
+              <Box>
+                <IconButton
+                  className="twitter-share-button"
+                  onClick={() =>
+                    twitterSharer(SHARER_TEXT, window.location.href, [
+                      "webdevelopment",
+                      "coding",
+                    ])
+                  }
+                >
+                  <TwitterIcon fontSize="large" className={styles.socialItem} />
+                </IconButton>
+                <IconButton
+                  className="custom-share-button"
+                  onClick={() =>
+                    customSharer(
+                      SHARER_TITLE,
+                      SHARER_TEXT,
+                      window.location.href
+                    )
+                  }
+                >
+                  <ShareIcon fontSize="large" className={styles.socialItem} />
+                </IconButton>
+              </Box>
+              <Box>{/* <Comments commentList={post.comments} /> */}</Box>
+            </>
+          ) : (
             <SkeletonCard />
-          </Box>
-        )}
+          )}
+        </Box>
         <Footer />
       </main>
     </>
