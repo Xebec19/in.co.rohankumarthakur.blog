@@ -34,7 +34,7 @@
 }
 
 .container code {
-  display: inline-block;
+  /* display: inline-block; */
   white-space: normal;
   max-width: 100%;
   word-break: break-all;

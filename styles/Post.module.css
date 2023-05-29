@@ -2,6 +2,8 @@
   max-width: 992px;
   margin: auto;
   margin-top: 5rem;
+  padding: 0px 8px;
+  box-sizing: border-box;
 }
 
 .content {
