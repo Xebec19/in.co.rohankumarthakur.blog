@@ -4,6 +4,7 @@ import styles from "../styles/AdsContainer.module.css";
 const AdsContainer = (props: any) => {
   useEffect(() => {
     var ads = document.getElementsByClassName("adsbygoogle").length;
+    var window: any;
     for (var i = 0; i < ads; i++) {
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
