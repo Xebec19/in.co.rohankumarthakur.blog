@@ -1,6 +1,7 @@
 .container img {
   width: 100%;
   object-fit: contain;
+  margin: 8px 0px;
 }
 
 .container h1 {
@@ -15,10 +16,27 @@
   font-size: 1.5rem;
 }
 
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+  margin: 8px 0px;
+}
+
 .container p {
   font-size: 1.2rem;
 }
 
 .container code {
   font-size: 1.2rem;
+}
+
+.container code {
+  display: inline-block;
+  white-space: normal;
+  max-width: 100%;
+  word-break: break-all;
+  word-wrap: break-word;
 }
