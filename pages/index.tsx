@@ -8,6 +8,7 @@ import PostList from "@/components/PostList";
 import Footer from "@/components/Footer";
 import SkeletonList from "@/components/SkeletonList";
 import { IPost, IPostItem, IResponse } from "@/interfaces";
+import AdsContainer from "@/components/AdsContainer";
 
 const DESCRIPTION = `Welcome to my personal blogging website! As a web developer with 2 years of experience,
 I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
@@ -28,6 +29,7 @@ const Home: React.FC<{ posts: IPost[] }> = ({ posts }) => {
       <main>
         <Navigation />
         <Grid container spacing={0} className={styles.container}>
+          <AdsContainer />
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}

@@ -3,6 +3,7 @@
   margin: auto;
   margin-top: 5rem;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .footer {
