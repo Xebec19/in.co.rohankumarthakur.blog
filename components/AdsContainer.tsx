@@ -21,7 +21,9 @@ const AdsContainer = (props: any) => {
           overflow: "hidden",
         }}
         data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}
-        {...props}
+        data-ad-slot="5888974435"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
       />
     </div>
   );

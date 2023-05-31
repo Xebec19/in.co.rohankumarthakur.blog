@@ -29,11 +29,7 @@ const Home: React.FC<{ posts: IPost[] }> = ({ posts }) => {
       <main>
         <Navigation />
         <Grid container spacing={0} className={styles.container}>
-          <AdsContainer
-            data-ad-slot="5888974435"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <AdsContainer />
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}

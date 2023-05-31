@@ -77,11 +77,7 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
       <main>
         <Navigation />
         <Box className={styles.main}>
-          <AdsContainer
-            data-ad-slot="5888974435"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <AdsContainer />
           {post ? (
             <>
               <Typography variant="h3" component="div" gutterBottom>

@@ -54,18 +54,19 @@ export default function Document() {
         ></Script>
 
         <Script
-          id="clarity"
+          id="ms_clarity"
           strategy="beforeInteractive"
           onError={(e) => {
             console.error("Script clarity failed to load", e);
           }}
-        >
-          {`(function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "gqkh1r5ux0");`}
-        </Script>
+          dangerouslySetInnerHTML={{
+            __html: ` (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "gqkh1r5ux0");`,
+          }}
+        ></Script>
 
         <Script
           id="Adsense-id"
