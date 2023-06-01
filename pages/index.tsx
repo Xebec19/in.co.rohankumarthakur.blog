@@ -23,13 +23,22 @@ const Home: React.FC<{ posts: IPost[] }> = ({ posts }) => {
       <Head>
         <title>Rohan Thakur</title>
         <meta name="description" content={DESCRIPTION} />
+        <meta
+          name="keywords"
+          content="webdevelopment, react, go, coding, website, nextjs, Web development tips and tricks"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Rohan's blogs" />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:image" content="/author.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@tweets_thakur" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Navigation />
         <Grid container spacing={0} className={styles.container}>
-          <AdsContainer />
           <Grid item md={8} xs={12}>
             <Typography gutterBottom variant="h4" component="div">
               {"Blogs"}
@@ -39,6 +48,7 @@ const Home: React.FC<{ posts: IPost[] }> = ({ posts }) => {
             ) : (
               <SkeletonList limit={10} />
             )}
+            <AdsContainer />
           </Grid>
           <Grid item md={4} xs={12}>
             <Author />

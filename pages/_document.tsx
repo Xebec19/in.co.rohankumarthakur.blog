@@ -70,6 +70,7 @@ export default function Document() {
 
         <Script
           id="Adsense-id"
+          data-ad-client="ca-pub-1523650356640670"
           async
           strategy="beforeInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1523650356640670"

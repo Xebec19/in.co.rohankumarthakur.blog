@@ -65,6 +65,11 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
             post?.description ? post.description.String : DEFAULT_DESCRIPTION
           }
         />
+        {post.tags && typeof post.tags == "object" && post.tags.length ? (
+          <meta name="keywords" content={post.tags?.join(",")} />
+        ) : (
+          <></>
+        )}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Rohan Kumar Thakur" />
         <link rel="icon" href="/favicon.ico" />
@@ -73,11 +78,14 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
         <meta property="og:image" content={post.image_url.String} />
         <meta property="og:type" content="article" />
         <meta property="og:description" content={post.description.String} />
+        <meta name="robots" content="index, follow" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@tweets_thakur" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Navigation />
         <Box className={styles.main}>
-          <AdsContainer />
           {post ? (
             <>
               <Typography variant="h3" component="div" gutterBottom>
@@ -134,6 +142,7 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
           ) : (
             <SkeletonCard />
           )}
+          <AdsContainer />
         </Box>
         <Footer />
       </main>
