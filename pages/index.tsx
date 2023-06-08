@@ -84,6 +84,7 @@ export async function getStaticProps() {
       image: post.image_url.String,
       imageSource: post.image_reference.String,
       tags: post.tags,
+      slug: post.slug.String,
     }));
 
     return {
