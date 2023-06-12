@@ -19,12 +19,22 @@ export interface IPostItem {
   description: ImageUrlOrImageReferenceOrDescriptionOrSource;
   source: ImageUrlOrImageReferenceOrDescriptionOrSource;
   tags?: string[] | null;
+  slug: ISlug;
 }
 export interface ImageUrlOrImageReferenceOrDescriptionOrSource {
   String: string;
   Valid: boolean;
 }
+export interface ISlug {
+  String: string;
+  Valid: boolean;
+}
 export interface CreatedAtOrUpdatedAt {
   Time: string;
+  Valid: boolean;
+}
+
+export interface ISlugEntity {
+  String: string;
   Valid: boolean;
 }

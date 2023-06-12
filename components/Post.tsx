@@ -18,11 +18,12 @@ interface IPost {
   tags?: string[] | null;
   title: string;
   updatedAt: string;
+  slug: string;
 }
 
 const Post: React.FC<{ item: IPost }> = ({ item }) => {
   return (
-    <Link href={`/${item.id}`} className={styles.link}>
+    <Link href={`/${item.slug}`} className={styles.link}>
       <Card variant="outlined" className={styles.card}>
         <CardHeader
           className={styles.header}
