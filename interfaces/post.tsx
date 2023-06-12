@@ -7,6 +7,7 @@ export interface IPost {
   tags?: string[] | null;
   title: string;
   updatedAt: string;
+  slug: string;
 }
 
 export interface IPostItem {
