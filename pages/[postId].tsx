@@ -152,7 +152,7 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps = async (context: { params: Params }) => {
   try {
     let { postId } = context.params as Params;
 
@@ -196,9 +196,14 @@ export const getStaticPaths = async () => {
     throw new Error("Slugs not found!");
   }
   let payload: ISlugEntity[] = data?.payload;
-  let slugs = payload.map((s: ISlugEntity) => ({ slug: s.String }));
+  let slugs = payload.map((s: ISlugEntity) => ({
+    params: { postId: s.String },
+  }));
 
-  return { slugs, fallback: "blocking" };
+  return {
+    paths: slugs,
+    fallback: "blocking",
+  };
 };
 
 export default PostPage;
