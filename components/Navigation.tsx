@@ -1,8 +1,5 @@
-import { InputAdornment, TextField } from "@material-ui/core";
 import { AppBar, Avatar, Box, IconButton, Toolbar } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import EmailIcon from "@mui/icons-material/Email";
-import styles from "./Navigation.module.css";
+import styles from "../styles/Navigation.module.css";
 import Link from "next/link";
 
 const Navigation = () => {
