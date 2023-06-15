@@ -3,7 +3,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { Box, Divider, IconButton, Paper, Typography } from "@mui/material";
-import styles from "./Author.module.css";
+import styles from "../styles/Author.module.css";
 import Link from "next/link";
 
 const Author = () => {

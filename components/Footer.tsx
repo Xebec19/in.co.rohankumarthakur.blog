@@ -1,9 +1,6 @@
-import { InputAdornment, TextField } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import SearchIcon from "@mui/icons-material/Search";
-import EmailIcon from "@mui/icons-material/Email";
-import styles from "./Footer.module.css";
+import styles from "../styles/Footer.module.css";
 import React from "react";
 
 const Footer = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import Head from "next/head";
 import { GetServerSideProps, GetStaticProps } from "next";
 import Box from "@mui/material/Box";
@@ -14,7 +14,7 @@ import { format } from "date-fns";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import styles from "../styles/Post.module.css";
+import styles from "../../styles/Post.module.css";
 import ShareIcon from "@mui/icons-material/Share";
 import { IPostItem } from "@/interfaces";
 import SkeletonCard from "@/components/SkeletonCard";
@@ -109,7 +109,9 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
               </Box>
               <Box className={styles.content}>
                 {post?.source?.String ? (
-                  <MDRenderer source={post?.source?.String} />
+                  <Suspense fallback={<p>Loading...</p>}>
+                    <MDRenderer source={post?.source?.String} />
+                  </Suspense>
                 ) : (
                   <BlogSkeleton />
                 )}

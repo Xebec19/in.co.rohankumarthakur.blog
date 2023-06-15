@@ -7,7 +7,7 @@ import { formatDistance } from "date-fns";
 import Link from "next/link";
 import Image from "next/image";
 import { ImgLoader } from "@/lib/imageLoader";
-import styles from "./Post.module.css";
+import styles from "../styles/PostPreview.module.css";
 
 interface IPost {
   createdAt: string;
@@ -40,6 +40,7 @@ const Post: React.FC<{ item: IPost }> = ({ item }) => {
             width={600}
             height={300}
             quality={45}
+            priority
           />
         </CardMedia>
         <CardContent className={styles.content}>{item.description}</CardContent>
