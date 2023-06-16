@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect } from "react";
 import Head from "next/head";
-import { GetServerSideProps, GetStaticProps } from "next";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -27,6 +26,7 @@ import { sharerPayload } from "@/config/share-text";
 import AdsContainer from "@/components/AdsContainer";
 import { STATIC_SLUG_LENGTH } from "@/config/default-values";
 import { ISlugEntity } from "@/interfaces/post";
+import CommentSection from "@/components/CommentSection";
 
 const SHARER_TEXT = sharerPayload.title;
 const SHARER_TITLE = sharerPayload.subtitle;
@@ -147,6 +147,8 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
             <SkeletonCard />
           )}
           <AdsContainer />
+
+          <CommentSection />
         </Box>
         <Footer />
       </main>
