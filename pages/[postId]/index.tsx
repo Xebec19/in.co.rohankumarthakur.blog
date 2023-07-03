@@ -26,7 +26,7 @@ import { sharerPayload } from "@/config/share-text";
 import AdsContainer from "@/components/AdsContainer";
 import { STATIC_SLUG_LENGTH } from "@/config/default-values";
 import { ISlugEntity } from "@/interfaces/post";
-import CommentSection from "@/components/CommentSection";
+import Script from "next/script";
 
 const SHARER_TEXT = sharerPayload.title;
 const SHARER_TITLE = sharerPayload.subtitle;
@@ -141,16 +141,27 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
                   <ShareIcon fontSize="large" className={styles.socialItem} />
                 </IconButton>
               </Box>
-              <Box>{/* <Comments commentList={post.comments} /> */}</Box>
+              <Box>
+                <Script
+                  id="id_utterance"
+                  onError={(e) => {
+                    console.log("Comments failed to load");
+                  }}
+                  src="https://utteranc.es/client.js"
+                  repo={process.env.NEXT_PUBLIC_UTTERANCES_REPO}
+                  issue-term={post.slug.String}
+                  theme="github-light"
+                  async
+                  strategy="afterInteractive"
+                  crossOrigin="anonymous"
+                />
+              </Box>
             </>
           ) : (
             <SkeletonCard />
           )}
           <AdsContainer />
-
-          <CommentSection />
         </Box>
-        <Footer />
       </main>
     </>
   );
