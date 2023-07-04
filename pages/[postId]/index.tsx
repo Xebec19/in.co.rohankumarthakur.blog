@@ -1,6 +1,5 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import Head from "next/head";
-import { GetServerSideProps, GetStaticProps } from "next";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -27,6 +26,8 @@ import { sharerPayload } from "@/config/share-text";
 import AdsContainer from "@/components/AdsContainer";
 import { STATIC_SLUG_LENGTH } from "@/config/default-values";
 import { ISlugEntity } from "@/interfaces/post";
+import Script from "next/script";
+import useScript from "@/hooks/useScript";
 
 const SHARER_TEXT = sharerPayload.title;
 const SHARER_TITLE = sharerPayload.subtitle;
@@ -34,6 +35,15 @@ const DEFAULT_DESCRIPTION = sharerPayload.description;
 
 const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
   let { twitterSharer, customSharer } = useSharer();
+  let comment = useRef(null);
+
+  const status = useScript({
+    url: "https://utteranc.es/client.js",
+    theme: "github-light",
+    issueTerm: "url",
+    repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
+    ref: comment,
+  });
 
   if (!post) {
     return (
@@ -141,14 +151,15 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
                   <ShareIcon fontSize="large" className={styles.socialItem} />
                 </IconButton>
               </Box>
-              <Box>{/* <Comments commentList={post.comments} /> */}</Box>
+              <Box>
+                <div ref={comment}></div>
+              </Box>
             </>
           ) : (
             <SkeletonCard />
           )}
           <AdsContainer />
         </Box>
-        <Footer />
       </main>
     </>
   );
