@@ -26,8 +26,9 @@ import { sharerPayload } from "@/config/share-text";
 import AdsContainer from "@/components/AdsContainer";
 import { STATIC_SLUG_LENGTH } from "@/config/default-values";
 import { ISlugEntity } from "@/interfaces/post";
-import Script from "next/script";
 import useScript from "@/hooks/useScript";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "next/link";
 
 const SHARER_TEXT = sharerPayload.title;
 const SHARER_TITLE = sharerPayload.subtitle;
@@ -40,7 +41,7 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
   const status = useScript({
     url: "https://utteranc.es/client.js",
     theme: "github-light",
-    issueTerm: "url",
+    issueTerm: "pathname",
     repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
     ref: comment,
   });
@@ -100,6 +101,12 @@ const PostPage: React.FC<{ post: IPostItem }> = ({ post }) => {
         <Box className={styles.main}>
           {post ? (
             <>
+              <Breadcrumbs aria-label="breadcrumb">
+                <Link color="text.primary" href={"/"}>
+                  Home
+                </Link>
+                <Typography color="text.primary">{post.title}</Typography>
+              </Breadcrumbs>
               <Typography variant="h3" component="div" gutterBottom>
                 {post.title}
               </Typography>
