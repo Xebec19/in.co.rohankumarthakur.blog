@@ -6,34 +6,31 @@ import {
   Avatar,
   Box,
   IconButton,
-  InputAdornment,
   TextField,
   Toolbar,
 } from "@mui/material";
 import styles from "../styles/Navigation.module.css";
 import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
-import EmailIcon from "@mui/icons-material/Email";
-
-const fetcher = async () => {
-  let url = "/api/search";
-  let options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const response = await fetch(url, options);
-  const data = await response.json();
-  return data;
-};
+import useSearch from "@/hooks/useSearch";
 
 const Navigation = () => {
-  const { data, error } = useSWR("search", fetcher);
-  const [searchResults, setSearchResults] = React.useState([]);
   const searchRef = React.useRef(null);
 
-  function searchHandler() {}
+  const { results, search } = useSearch();
+
+  console.log(results);
+
+  async function onSearchHandler() {
+    let searchText = searchRef.current?.value || "";
+    search(searchText);
+    searchRef.current.focus();
+    searchRef.current.click();
+  }
+
+  async function onChangeHandler(event, option) {
+    console.log(option?.value);
+  }
 
   return (
     <Box>
@@ -50,13 +47,19 @@ const Navigation = () => {
             <Autocomplete
               freeSolo
               id="id_search"
-              options={searchResults}
+              open={!!results}
+              options={results}
+              onChange={onChangeHandler}
               sx={{ width: 200 }}
               size="small"
               renderInput={(params) => (
                 <TextField inputRef={searchRef} {...params} />
               )}
             />
+            &nbsp;
+            <IconButton onClick={onSearchHandler}>
+              <SearchIcon />
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
