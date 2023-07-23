@@ -1,4 +1,5 @@
 export const STATIC_SLUG_LENGTH = 2;
+export const SITEMAP_SLUG_LENGTH = 100;
 export const AUTHOR = "Rohan Thakur";
 export const DESCRIPTION = `Welcome to my personal blogging website! As a web developer with 2 years of experience,
 I love sharing my knowledge and passion for all things tech-related. Here you'll find a variety
