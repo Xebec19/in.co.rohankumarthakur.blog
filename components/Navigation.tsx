@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import {
   AppBar,
   Autocomplete,
@@ -13,21 +13,27 @@ import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
 import useSearch from "@/hooks/useSearch";
 import { useRouter } from "next/router";
+import { Url } from "next/dist/shared/lib/router/router";
 
 const Navigation = () => {
-  const searchRef = React.useRef(null);
+  const searchRef = React.useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
   const { results, search } = useSearch();
 
   async function onSearchHandler() {
-    let searchText = searchRef.current?.value || "";
-    search(searchText);
-    searchRef.current.focus();
-    searchRef.current.click();
+    if (searchRef.current) {
+      let searchText = searchRef.current?.value || "";
+      search(searchText);
+      searchRef.current.focus();
+      searchRef.current.click();
+    }
   }
 
-  async function onChangeHandler(event, option) {
+  async function onChangeHandler(
+    event: React.SyntheticEvent<Element, Event>,
+    option: any
+  ) {
     if (!option?.value) {
       return;
     }

@@ -19,8 +19,13 @@ const fetcher = async (searchText: string): Promise<IResponse> => {
   return data;
 };
 
+interface IResult {
+  label: any;
+  value: any;
+}
+
 export default function useSearch() {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<IResult[]>([]);
 
   async function searchHandler(text: string) {
     let searchText = text;
