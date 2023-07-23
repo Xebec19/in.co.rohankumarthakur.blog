@@ -1,5 +1,4 @@
 import React from "react";
-import useSWR from "swr";
 import {
   AppBar,
   Autocomplete,
@@ -13,13 +12,13 @@ import styles from "../styles/Navigation.module.css";
 import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
 import useSearch from "@/hooks/useSearch";
+import { useRouter } from "next/router";
 
 const Navigation = () => {
   const searchRef = React.useRef(null);
+  const router = useRouter();
 
   const { results, search } = useSearch();
-
-  console.log(results);
 
   async function onSearchHandler() {
     let searchText = searchRef.current?.value || "";
@@ -29,7 +28,10 @@ const Navigation = () => {
   }
 
   async function onChangeHandler(event, option) {
-    console.log(option?.value);
+    if (!option?.value) {
+      return;
+    }
+    router.push(option.value);
   }
 
   return (
