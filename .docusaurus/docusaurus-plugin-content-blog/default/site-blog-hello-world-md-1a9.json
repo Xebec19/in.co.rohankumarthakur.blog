@@ -1,0 +1,52 @@
+{
+  "permalink": "/blog/database-migration-in-go-with-soda",
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/hello-world.md",
+  "source": "@site/blog/hello-world.md",
+  "title": "Database Migration in Go Projects with Soda: A Concise Guide",
+  "description": "Introduction",
+  "date": "2023-08-13T16:23:20.904Z",
+  "formattedDate": "August 13, 2023",
+  "tags": [
+    {
+      "label": "web development",
+      "permalink": "/blog/tags/web-development"
+    },
+    {
+      "label": "go",
+      "permalink": "/blog/tags/go"
+    },
+    {
+      "label": "database",
+      "permalink": "/blog/tags/database"
+    }
+  ],
+  "readingTime": 5.47,
+  "hasTruncateMarker": false,
+  "authors": [
+    {
+      "name": "Rohan Thakur",
+      "title": "Author",
+      "url": "https://github.com/Xebec19",
+      "image_url": "https://github.com/Xebec19.png",
+      "imageURL": "https://github.com/Xebec19.png"
+    }
+  ],
+  "frontMatter": {
+    "slug": "database-migration-in-go-with-soda",
+    "title": "Database Migration in Go Projects with Soda: A Concise Guide",
+    "authors": [
+      {
+        "name": "Rohan Thakur",
+        "title": "Author",
+        "url": "https://github.com/Xebec19",
+        "image_url": "https://github.com/Xebec19.png",
+        "imageURL": "https://github.com/Xebec19.png"
+      }
+    ],
+    "tags": [
+      "web development",
+      "go",
+      "database"
+    ]
+  }
+}

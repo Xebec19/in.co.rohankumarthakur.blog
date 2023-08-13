@@ -1,0 +1,38 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "go/database-migration-in-go-with-soda",
+          "docs": [
+            {
+              "id": "go/database-migration-in-go-with-soda",
+              "path": "/docs/go/database-migration-in-go-with-soda",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/go",
+              "path": "/docs/category/go",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/category/go",
+                "label": "Go"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

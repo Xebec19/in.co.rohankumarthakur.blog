@@ -1,0 +1,14 @@
+{
+  "label": "go",
+  "permalink": "/docs/tags/go",
+  "allTagsPath": "/docs/tags",
+  "count": 1,
+  "items": [
+    {
+      "id": "go/database-migration-in-go-with-soda",
+      "title": "Database Migration in Go Projects with Soda: A Concise Guide",
+      "description": "---",
+      "permalink": "/docs/go/database-migration-in-go-with-soda"
+    }
+  ]
+}

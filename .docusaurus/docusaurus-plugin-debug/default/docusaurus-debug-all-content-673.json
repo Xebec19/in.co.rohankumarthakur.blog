@@ -1,0 +1,186 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/docs",
+          "tagsPath": "/docs/tags",
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
+          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/home/rohan/Code/web/blog/sidebars.js",
+          "contentPath": "/home/rohan/Code/web/blog/docs",
+          "contentPathLocalized": "/home/rohan/Code/web/blog/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "unversionedId": "go/database-migration-in-go-with-soda",
+              "id": "go/database-migration-in-go-with-soda",
+              "title": "Database Migration with Soda",
+              "description": "Introduction",
+              "source": "@site/docs/go/database-migration-in-go-with-soda.md",
+              "sourceDirName": "go",
+              "slug": "/go/database-migration-in-go-with-soda",
+              "permalink": "/docs/go/database-migration-in-go-with-soda",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/go/database-migration-in-go-with-soda.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "slug": "database-migration-in-go-with-soda",
+                "title": "Database Migration with Soda",
+                "authors": [
+                  {
+                    "name": "Rohan Thakur",
+                    "title": "Author",
+                    "url": "https://github.com/Xebec19",
+                    "image_url": "https://github.com/Xebec19.png",
+                    "tags": [
+                      "web development",
+                      "go",
+                      "database"
+                    ]
+                  }
+                ],
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Go",
+                "permalink": "/docs/category/go"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "category",
+                "label": "Go",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "go/database-migration-in-go-with-soda"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "description": "My blogs related to Go programming language",
+                  "slug": "/category/go",
+                  "permalink": "/docs/category/go"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [
+        {
+          "id": "html-sse",
+          "metadata": {
+            "permalink": "/blog/html-sse",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/html-sse.md",
+            "source": "@site/blog/html-sse.md",
+            "title": "HTML Server Sent Events",
+            "description": "Why HTML SSE ?",
+            "date": "2023-08-13T17:15:29.812Z",
+            "formattedDate": "August 13, 2023",
+            "tags": [],
+            "readingTime": 1.625,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Rohan Thakur",
+                "title": "Author",
+                "url": "https://github.com/Xebec19",
+                "image_url": "https://github.com/Xebec19.png",
+                "tags": [
+                  "web development",
+                  "html",
+                  "javascript",
+                  "nodejs"
+                ],
+                "imageURL": "https://github.com/Xebec19.png"
+              }
+            ],
+            "frontMatter": {
+              "slug": "html-sse",
+              "title": "HTML Server Sent Events",
+              "authors": [
+                {
+                  "name": "Rohan Thakur",
+                  "title": "Author",
+                  "url": "https://github.com/Xebec19",
+                  "image_url": "https://github.com/Xebec19.png",
+                  "tags": [
+                    "web development",
+                    "html",
+                    "javascript",
+                    "nodejs"
+                  ],
+                  "imageURL": "https://github.com/Xebec19.png"
+                }
+              ]
+            }
+          },
+          "content": "### Why HTML SSE ?\n\nIt always make me curious that how codeforces provide real time notifications to users during contests. Does it use any tool like firebase to set pub/sub ? Does it use long polling ? Sending repeat requests to server to fetch notifications does not sound like a bright idea. Though I am still not very clear about how codeforces handles all those timely prompts but I have came across a way which might serve the purpose and that is HTML Server Sent Events.\n\n![](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/volodymyr-hryshchenko-V5vqWC9gyEU-unsplash.jpg)\n\n### What is HTML SSE ?\n\nAs mentioned by w3schools \"Server-Sent Events (SSE) allow a web page to get updates from a server\". Allright! we do not need to send repeated request to the server for fetching update. We can use Server-Sent Events through which our server will send update to the website. Before we dig further, let's have a look on the list of browsers which supports Server-Sent Events.\n\n![](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/caniuse-SSE.png)\n\n### Implementation\n\nLet's move to the fun part and learn how to implement SSE. First we will create a nodeJs application and create a route as follows:\n\n![index.js](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/sse-server-code-snapshot.png)\n\nAs we can see we only need to set \"Content-Type\" header as \"text/event-stream\" and send our data. In our case we will be sending a timestamp. Now lets create a simple html page which will receive updates from our server.\n\n![index.html](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/sse-client-code-snapshot.png)\n\nIn the above code, we have created an EventSource which is connected to \"http://localhost:3000/sse\" route. We have used onmessage event to get messages. Some other events are as follows:\n\n1. onopen: When a connection to the server is opened\n2. onmessage: When a message is received\n3. onerror: When an error occurs\n\nLet's start our server with below command.\n\n```\nnode index.js\n```\n\nNow, we will checkout our web page.\n\n![page.html](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/page.gif)\n\nAwesome! We are automatically receiving those timestamps from our server. Hope you find this article helpful. You can find the source code on [github](https://github.com/Xebec19/html-sse). Happy coding!"
+        }
+      ],
+      "blogListPaginated": [
+        {
+          "items": [
+            "html-sse"
+          ],
+          "metadata": {
+            "permalink": "/blog",
+            "page": 1,
+            "postsPerPage": 10,
+            "totalPages": 1,
+            "totalCount": 1,
+            "blogDescription": "Blog",
+            "blogTitle": "Blog"
+          }
+        }
+      ],
+      "blogTags": {},
+      "blogTagsListPath": "/blog/tags"
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/",
+        "source": "@site/src/pages/index.tsx"
+      },
+      {
+        "type": "mdx",
+        "permalink": "/markdown-page",
+        "source": "@site/src/pages/markdown-page.md",
+        "title": "Markdown page example",
+        "description": "You don't need React to write simple standalone pages.",
+        "frontMatter": {
+          "title": "Markdown page example"
+        }
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}
