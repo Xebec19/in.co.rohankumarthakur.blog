@@ -1,23 +1,41 @@
-# in.co.rohankumarthakur.blog
+# Website
 
-This repository contains the source code for a blogging website.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-## Overview
-
-This website uses Nextjs, Mongodb and AWS.
-
-## Installation
-
-To run the website locally, you will need to have Node installed on your machine.
-
-To run the website, navigate to the directory where you have cloned the repository, and run the following command:
+### Installation
 
 ```
-yarn run dev
+$ yarn
 ```
 
-Then, open your web browser and navigate to http://localhost:3000
+### Local Development
 
-## Contributing
+```
+$ yarn start
+```
 
-If you would like to contribute to the development of the website, please create a pull request with your changes.
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+Using SSH:
+
+```
+$ USE_SSH=true yarn deploy
+```
+
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
