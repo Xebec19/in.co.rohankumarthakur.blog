@@ -3,9 +3,18 @@
   align-items: center;
   padding: 2rem 0;
   width: 100%;
+  border: 5px solid tomato;
 }
 
 .featureSvg {
   height: 200px;
   width: 200px;
+}
+
+.heading {
+  font-size: 24px;
+}
+
+.description {
+  font-size: 24px;
 }
