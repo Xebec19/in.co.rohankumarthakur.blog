@@ -77,7 +77,7 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/docs-87d": {
+  "/docs-587": {
     "__comp": "__comp---theme-doc-page-1-be-9be",
     "__context": {
       "plugin": "plugin---docs-02-a-85b"
@@ -91,6 +91,10 @@
   "/docs/go/database-migration-in-go-with-soda-9a0": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-go-database-migration-in-go-with-soda-227-de5"
+  },
+  "/docs/intro-aed": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-intro-0-e-3-be1"
   },
   "/-a1d": {
     "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",

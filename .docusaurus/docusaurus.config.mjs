@@ -27,11 +27,11 @@ export default {
       {
         "docs": {
           "sidebarPath": "/home/rohan/Code/web/blog/sidebars.js",
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+          "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs"
         },
         "blog": {
           "showReadingTime": true,
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+          "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/blog"
         },
         "theme": {
           "customCss": "/home/rohan/Code/web/blog/src/css/custom.css"
@@ -45,7 +45,7 @@ export default {
       "title": "My Site",
       "logo": {
         "alt": "My Site Logo",
-        "src": "img/logo.svg"
+        "src": "img/blog-logo.png"
       },
       "items": [
         {
@@ -60,7 +60,7 @@ export default {
           "position": "left"
         },
         {
-          "href": "https://github.com/facebook/docusaurus",
+          "href": "https://github.com/Xebec19",
           "label": "GitHub",
           "position": "right"
         }
@@ -74,7 +74,7 @@ export default {
           "title": "Docs",
           "items": [
             {
-              "label": "Tutorial",
+              "label": "Introduction",
               "to": "/docs/intro"
             }
           ]
@@ -84,15 +84,15 @@ export default {
           "items": [
             {
               "label": "Stack Overflow",
-              "href": "https://stackoverflow.com/questions/tagged/docusaurus"
+              "href": "https://stackoverflow.com/users/13674513/rohan-kumar-thakur"
             },
             {
-              "label": "Discord",
-              "href": "https://discordapp.com/invite/docusaurus"
+              "label": "Linkedin",
+              "href": "https://www.linkedin.com/in/rohan-kumar-thakur"
             },
             {
               "label": "Twitter",
-              "href": "https://twitter.com/docusaurus"
+              "href": "https://twitter.com/tweets_thakur"
             }
           ]
         },
@@ -105,12 +105,12 @@ export default {
             },
             {
               "label": "GitHub",
-              "href": "https://github.com/facebook/docusaurus"
+              "href": "https://github.com/Xebec19"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2023 Rohan Kumar Thakur, Inc. Built with Docusaurus."
+      "copyright": "Build by Rohan Kumar Thakur"
     },
     "prism": {
       "theme": {
@@ -316,6 +316,12 @@ export default {
         }
       ]
     },
+    "metadata": [
+      {
+        "name": "keywords",
+        "content": "rohan kumar thakur, developer, blogs"
+      }
+    ],
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -328,7 +334,6 @@ export default {
         "autoCollapseCategories": false
       }
     },
-    "metadata": [],
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3

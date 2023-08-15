@@ -59,7 +59,7 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '87d'),
+    component: ComponentCreator('/docs', '587'),
     routes: [
       {
         path: '/docs/category/go',
@@ -70,6 +70,12 @@ export default [
       {
         path: '/docs/go/database-migration-in-go-with-soda',
         component: ComponentCreator('/docs/go/database-migration-in-go-with-soda', '9a0'),
+        exact: true,
+        sidebar: "tutorialSidebar"
+      },
+      {
+        path: '/docs/intro',
+        component: ComponentCreator('/docs/intro', 'aed'),
         exact: true,
         sidebar: "tutorialSidebar"
       }

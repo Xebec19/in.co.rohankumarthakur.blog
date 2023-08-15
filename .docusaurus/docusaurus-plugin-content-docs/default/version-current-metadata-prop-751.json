@@ -23,6 +23,12 @@
           }
         ],
         "href": "/docs/category/go"
+      },
+      {
+        "type": "link",
+        "label": "Introduction",
+        "href": "/docs/intro",
+        "docId": "intro"
       }
     ]
   },
@@ -31,6 +37,12 @@
       "id": "go/database-migration-in-go-with-soda",
       "title": "Database Migration with Soda",
       "description": "Introduction",
+      "sidebar": "tutorialSidebar"
+    },
+    "intro": {
+      "id": "intro",
+      "title": "Introduction",
+      "description": "👋 Hi, I'm Rohan.",
       "sidebar": "tutorialSidebar"
     }
   }

@@ -11,8 +11,8 @@
           "className": "docs-version-current",
           "path": "/docs",
           "tagsPath": "/docs/tags",
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
-          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
+          "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs/docs",
+          "editUrlLocalized": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs/i18n/en/docusaurus-plugin-content-docs/current",
           "isLast": true,
           "routePriority": -1,
           "sidebarFilePath": "/home/rohan/Code/web/blog/sidebars.js",
@@ -29,7 +29,7 @@
               "slug": "/go/database-migration-in-go-with-soda",
               "permalink": "/docs/go/database-migration-in-go-with-soda",
               "draft": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/go/database-migration-in-go-with-soda.md",
+              "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs/docs/go/database-migration-in-go-with-soda.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -55,6 +55,47 @@
               "previous": {
                 "title": "Go",
                 "permalink": "/docs/category/go"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/docs/intro"
+              }
+            },
+            {
+              "unversionedId": "intro",
+              "id": "intro",
+              "title": "Introduction",
+              "description": "👋 Hi, I'm Rohan.",
+              "source": "@site/docs/intro.md",
+              "sourceDirName": ".",
+              "slug": "/intro",
+              "permalink": "/docs/intro",
+              "draft": false,
+              "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs/docs/intro.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "slug": "intro",
+                "title": "Introduction",
+                "authors": [
+                  {
+                    "name": "Rohan Thakur",
+                    "title": "Author",
+                    "url": "https://github.com/Xebec19",
+                    "image_url": "https://github.com/Xebec19.png",
+                    "tags": [
+                      "web development",
+                      "html",
+                      "javascript",
+                      "nodejs"
+                    ]
+                  }
+                ]
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Database Migration with Soda",
+                "permalink": "/docs/go/database-migration-in-go-with-soda"
               }
             }
           ],
@@ -78,6 +119,10 @@
                   "slug": "/category/go",
                   "permalink": "/docs/category/go"
                 }
+              },
+              {
+                "type": "doc",
+                "id": "intro"
               }
             ]
           }
@@ -93,11 +138,11 @@
           "id": "html-sse",
           "metadata": {
             "permalink": "/blog/html-sse",
-            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/html-sse.md",
+            "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/blog/blog/html-sse.md",
             "source": "@site/blog/html-sse.md",
             "title": "HTML Server Sent Events",
             "description": "Why HTML SSE ?",
-            "date": "2023-08-13T17:15:29.812Z",
+            "date": "2023-08-13T17:25:11.000Z",
             "formattedDate": "August 13, 2023",
             "tags": [],
             "readingTime": 1.625,

@@ -1,27 +1,37 @@
 {
   "unversionedId": "intro",
   "id": "intro",
-  "title": "Tutorial Intro",
-  "description": "Let's discover Docusaurus in less than 5 minutes.",
+  "title": "Introduction",
+  "description": "👋 Hi, I'm Rohan.",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",
   "permalink": "/docs/intro",
   "draft": false,
-  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
+  "editUrl": "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs/docs/intro.md",
   "tags": [],
   "version": "current",
-  "sidebarPosition": 1,
   "frontMatter": {
-    "sidebar_position": 1
+    "slug": "intro",
+    "title": "Introduction",
+    "authors": [
+      {
+        "name": "Rohan Thakur",
+        "title": "Author",
+        "url": "https://github.com/Xebec19",
+        "image_url": "https://github.com/Xebec19.png",
+        "tags": [
+          "web development",
+          "html",
+          "javascript",
+          "nodejs"
+        ]
+      }
+    ]
   },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Database Migration with Soda",
     "permalink": "/docs/go/database-migration-in-go-with-soda"
-  },
-  "next": {
-    "title": "Tutorial - Basics",
-    "permalink": "/docs/category/tutorial---basics"
   }
 }
