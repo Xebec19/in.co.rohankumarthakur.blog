@@ -64,6 +64,20 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      "@gracefullight/docusaurus-plugin-microsoft-clarity",
+      { projectId: "gqkh1r5ux0" },
+    ],
+    [
+      "@docusaurus/plugin-google-gtag",
+      {
+        trackingID: "G-L2CG4VF8C3",
+        anonymizeIP: true,
+      },
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
