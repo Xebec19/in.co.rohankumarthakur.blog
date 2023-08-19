@@ -153,6 +153,10 @@ const config = {
                 to: "/blog",
               },
               {
+                label: "rss",
+                to: "/blog/rss.xml",
+              },
+              {
                 label: "GitHub",
                 href: "https://github.com/Xebec19",
               },
