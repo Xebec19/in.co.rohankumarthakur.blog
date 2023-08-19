@@ -153,8 +153,8 @@ const config = {
                 to: "/blog",
               },
               {
-                label: "rss",
-                to: "/blog/rss.xml",
+                label: "RSS",
+                href: "https://rohankumarthakur.co.in/blog/rss.xml",
               },
               {
                 label: "GitHub",
