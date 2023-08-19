@@ -154,7 +154,7 @@ const config = {
               },
               {
                 label: "rss",
-                to: "/rss.xml",
+                to: "/blog/rss.xml",
               },
               {
                 label: "GitHub",
