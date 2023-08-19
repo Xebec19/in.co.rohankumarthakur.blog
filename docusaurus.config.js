@@ -50,6 +50,18 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/blog",
+          feedOptions: {
+            type: "all",
+            copyright: `Rohan Kumar Thakur`,
+            createFeedItems: async (params) => {
+              const { blogPosts, defaultCreateFeedItems, ...rest } = params;
+              return defaultCreateFeedItems({
+                // keep only the 10 most recent blog posts in the feed
+                blogPosts: blogPosts.filter((item, index) => index < 10),
+                ...rest,
+              });
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
