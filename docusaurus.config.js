@@ -163,7 +163,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Build by Rohan Kumar Thakur`,
+        // copyright: `Rohan Kumar Thakur`,
       },
       prism: {
         theme: lightCodeTheme,
