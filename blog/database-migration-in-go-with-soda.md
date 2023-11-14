@@ -7,15 +7,13 @@ authors:
     url: https://github.com/Xebec19
     image_url: https://github.com/Xebec19.png
     tags: ["web development", "go", "database"]
-
-sidebar_position: 1
 ---
 
 ## Introduction
 
 In the world of software development, effectively managing database schema changes is crucial as applications evolve over time. To ensure a smooth transition between different versions of the database schema, it's essential to use database migration tools that provide a systematic way to apply and track these changes. In this article, we'll explore how to set up database migration for a Go application using the popular migration tool called "Soda." Whether you're an experienced Go developer or new to the language, we'll guide you through the process in a clear and concise manner. Let's dive in!
 
-![Photo by Jan Antonin Kolar on Unsplash](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/soda-banner.jpg)
+![Photo by Jan Antonin Kolar on Unsplash](/img/jan-antonin-kolar-lRoX0shwjUQ-unsplash.jpg)
 
 ### Prerequisites
 
@@ -51,7 +49,7 @@ You can find more information about Soda [link](https://gobuffalo.io/documentati
 
 Before we proceed, let's ensure we have a database ready. In this example, we'll assume a database named "sodademo" already exists.
 
-![screenshot](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/soda-migrations/Screenshot+from+2023-05-22+23-31-08.png)
+![screenshot](/img/migration-create-database.png)
 
 Next, we need to create a `database.yml` file to specify the connection details:
 
@@ -117,11 +115,11 @@ This command will execute all pending migrations. You can find more information 
 
 Let's run our migration file.
 
-![screenshot](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/soda-migrations/Screenshot+from+2023-05-22+23-35-32.png)
+![screenshot](/img/migration-up-mig.png)
 
 After running the "up" migration script, the table will be created in our database.
 
-![screenshot](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/soda-migrations/Screenshot+from+2023-05-22+23-35-46.png)
+![screenshot](/img/migrate-up.png)
 
 ### Step 6: Rolling Back Migrations
 
@@ -131,11 +129,11 @@ If we need to roll back the last applied migration, we can use the following com
 
 Executing the "down" script allows us to revert the changes made by the "up" script.
 
-![screenshot](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/soda-migrations/Screenshot+from+2023-05-22+23-35-53.png)
+![screenshot](/img/migrate-down.png)
 
 Now, if we check our database, the user table has been deleted.
 
-![screenshot](https://symmetrical-carnival.s3.ap-south-1.amazonaws.com/publicprefix/soda-migrations/Screenshot+from+2023-05-22+23-36-05.png)
+![screenshot](/img/migrate-db.png)
 
 ### Conclusion and Troubleshooting
 
