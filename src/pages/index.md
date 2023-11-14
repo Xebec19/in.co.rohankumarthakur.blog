@@ -5,7 +5,7 @@ title: About Me
 <h1 align="center">👋 Hi, I'm Rohan.</h1>
 
 <p align="center">
-  <a href="https://rohankumarthakur.co.in/">Website</a> •&nbsp;
+  <a href="https://github.com/Xebec19/">Github</a> •&nbsp;
   <a href="https://xebec19.medium.com/">Blog</a> •&nbsp;
   <a href="https://twitter.com/tweets_thakur/">Twitter</a>
 </p>

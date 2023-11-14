@@ -37,13 +37,13 @@ const config = {
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs",
-        },
+        // docs: {
+        //   sidebarPath: require.resolve("./sidebars.js"),
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/docs",
+        // },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
@@ -96,18 +96,12 @@ const config = {
       // Replace with your project's social card
       image: "img/blog-social-card.png",
       navbar: {
-        title: "My Site",
+        title: "About",
         logo: {
           alt: "My Site Logo",
           src: "img/blog-logo.png",
         },
         items: [
-          {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "Tutorial",
-          },
           { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/Xebec19",
@@ -119,15 +113,6 @@ const config = {
       footer: {
         style: "dark",
         links: [
-          {
-            title: "Docs",
-            items: [
-              {
-                label: "Introduction",
-                to: "/docs/intro",
-              },
-            ],
-          },
           {
             title: "Community",
             items: [
