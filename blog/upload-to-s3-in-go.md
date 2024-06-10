@@ -39,7 +39,7 @@ Next, we need to create a policy that grants access to this bucket.
 
 ![set resource and actions](/img/utsig-set-resource-and-permissions.png)
 
-5. In the Resources section, input the ARN (Amazon Resource Name) of your S3 bucket. You can find the ARN in the properties section of the bucket.
+5. In the Resources section, input the ARN (Amazon Resource Name) of your S3 bucket opposite the bucket label. You can find the ARN in the properties section of the bucket.
 
 ![arn](/img/utsig-arn.png)
 
@@ -81,7 +81,7 @@ After creating the policy, we need to create an IAM user and assign this policy 
 
 5. Create access keys for the user so that our API can access the bucket on behalf of the created user. Go to the "Security Credentials" section.
 
-![move to security credentials section](/img/utsig-move-to-access-keys.png)
+![move to security credentials section](/img/utsig-visit-security-credentials.png)
 
 6. Scroll down to "Access Keys" and create a new access key.
 
