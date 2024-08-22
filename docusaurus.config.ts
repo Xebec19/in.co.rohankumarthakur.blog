@@ -73,7 +73,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/blog-social-card.png",
+    image: "img/og-image.webp",
     navbar: {
       title: "About",
       logo: {
