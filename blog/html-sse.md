@@ -1,12 +1,9 @@
 ---
 slug: html-sse
 title: "HTML Server Sent Events"
-authors:
-  - name: Rohan Thakur
-    title: Author
-    url: https://github.com/Xebec19
-    image_url: https://github.com/Xebec19.png
-    tags: ["web development", "html", "javascript", "nodejs"]
+date: 08/13/2023
+authors: rohan
+tags: ["web development", "html", "javascript", "nodejs"]
 ---
 
 ### Why HTML SSE ?

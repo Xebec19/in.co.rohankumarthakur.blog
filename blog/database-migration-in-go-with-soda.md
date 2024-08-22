@@ -1,12 +1,9 @@
 ---
 slug: database-migration-in-go-with-soda
 title: "Database Migration with Soda"
-authors:
-  - name: Rohan Thakur
-    title: Author
-    url: https://github.com/Xebec19
-    image_url: https://github.com/Xebec19.png
-    tags: ["web development", "go", "database"]
+date: 08/13/2023
+authors: rohan
+tags: ["web development", "go", "database"]
 ---
 
 ## Introduction

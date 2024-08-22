@@ -7,7 +7,7 @@ title: About Me
 <p align="center">
   <a href="https://github.com/Xebec19/">Github</a> •&nbsp;
   <a href="https://xebec19.medium.com/">Blog</a> •&nbsp;
-  <a href="https://twitter.com/tweets_thakur/">Twitter</a>
+  <a href="https://x.com/tweets_thakur/">X</a>
 </p>
 
 ---
