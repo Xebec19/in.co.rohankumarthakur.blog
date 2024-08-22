@@ -2,12 +2,7 @@
 slug: build-games-in-js
 title: "Build Games in Javascript"
 date: 08/22/2024
-authors:
-  - name: Rohan
-    title: Author
-    url: https://github.com/Xebec19
-    image_url: https://github.com/Xebec19.png
-    tags: ["games", "javascript", kaplay"]
+authors: rohan
 ---
 
 ## Introduction

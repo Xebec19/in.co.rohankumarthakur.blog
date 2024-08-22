@@ -167,6 +167,31 @@ const config: Config = {
       },
     ],
   } satisfies Preset.ThemeConfig,
+
+  headTags: [
+    // Declare a <link> preconnect tag
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://rohankumarthakur.co.in",
+      },
+    },
+    // Declare some json-ld structured data
+    {
+      tagName: "script",
+      attributes: {
+        type: "application/ld+json",
+      },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "Organization",
+        name: "Rohan Kumar Thakur",
+        url: "https://rohankumarthakur.co.in/",
+        logo: "img/logo.svg",
+      }),
+    },
+  ],
 };
 
 export default config;

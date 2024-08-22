@@ -2,12 +2,8 @@
 slug: upload-to-s3-in-go
 title: "How to Upload a File to S3: A Step-by-Step Guide"
 date: 06/10/2024
-authors:
-  - name: Rohan Thakur
-    title: Author
-    url: https://github.com/Xebec19
-    image_url: https://github.com/Xebec19.png
-    tags: ["web development", "go", "aws", "s3"]
+authors: rohan
+tags: ["web development", "go", "aws", "s3"]
 ---
 
 ## Introduction
