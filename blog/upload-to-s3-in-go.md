@@ -1,6 +1,7 @@
 ---
 slug: upload-to-s3-in-go
 title: "How to Upload a File to S3: A Step-by-Step Guide"
+date: 06/10/2024
 authors:
   - name: Rohan Thakur
     title: Author

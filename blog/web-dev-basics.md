@@ -1,6 +1,7 @@
 ---
 slug: overview
 title: "Web development basics"
+date: 11/14/2023
 authors:
   - name: "Rohan Thakur"
     title: Author

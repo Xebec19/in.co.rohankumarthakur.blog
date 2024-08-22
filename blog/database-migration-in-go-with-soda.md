@@ -1,6 +1,7 @@
 ---
 slug: database-migration-in-go-with-soda
 title: "Database Migration with Soda"
+date: 08/13/2023
 authors:
   - name: Rohan Thakur
     title: Author

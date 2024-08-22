@@ -1,8 +1,9 @@
 ---
 slug: build-games-in-js
 title: "Build Games in Javascript"
+date: 08/22/2024
 authors:
-  - name: Rohan Thakur
+  - name: Rohan
     title: Author
     url: https://github.com/Xebec19
     image_url: https://github.com/Xebec19.png
@@ -20,4 +21,3 @@ First we need to create a project. We would use kaplay cli tool to create one.
 ```sh
 npx create-kaplay platformer
 ```
-

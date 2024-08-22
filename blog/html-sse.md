@@ -1,6 +1,7 @@
 ---
 slug: html-sse
 title: "HTML Server Sent Events"
+date: 08/13/2023
 authors:
   - name: Rohan Thakur
     title: Author
