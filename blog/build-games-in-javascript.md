@@ -17,3 +17,13 @@ First we need to create a project. We would use kaplay cli tool to create one.
 ```sh
 npx create-kaplay platformer
 ```
+
+Now, we have created a project with required files. We can start the project using below commands
+
+```sh
+cd platformer
+
+npm run dev
+```
+
+![project init](/img/build-games-in-js/first-map.png)
