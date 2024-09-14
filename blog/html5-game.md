@@ -1,6 +1,6 @@
 ---
 slug: html5-game
-title: "How to create an HTML5 Game"
+title: "Building a HTML5 game with KaplayJS"
 date: 08/22/2024
 draft: true
 authors: rohan
@@ -10,74 +10,161 @@ authors: rohan
 
 ## Introduction
 
-Creating games has always been a thrilling experience for developers, blending creativity with technical skill. With the rise of HTML5 and JavaScript, building engaging, cross-platform games has become more accessible than ever. In this blog, we'll dive into the world of HTML5 game development, focusing on how to create interactive games using JavaScript and the KaplayJS library. Whether you're a beginner or an experienced developer, this guide will equip you with the knowledge to bring your game ideas to life right in the browser. Let's start building!
+Creating 2D games is not only fun but also a great way to learn and practice coding. In this blog post, we'll build a simple game using KaplayJS, a JavaScript game development library. The game is about controlling a character, "the bean", and helping it jump over pipes to avoid collisions. Let's break down the steps and understand how the game works!
 
-## Setup
+## Setting Up the Game Environment
 
-Let's kick off by initializing our project with the following command:
-
-```sh
-npx create-kaplay easy-leap
-```
-
-Next, navigate into your project directory and start the development server:
-
-```sh
-cd easy-leap
-
-npm run dev
-```
-
-Once the server is up and running, open your browser to check out the game. You'll see a default layout similar to this:
-
-![default map](/static/img/html5-game/firstmap.png)
-
-## Add map
-
-Ok, the tiled map layout doesnt look good. Lets add a skyblue color background here. We can get that background by writing below command in src/main.js
+We start by loading some essential assets for our game: a character sprite (our bean). Here&apos;s the code to load them:
 
 ```js
-setBackground(141, 183, 255); // set background to skyblue color
+kaplay();
+
+loadSprite("bean", "/sprites/bean.png");
+loadSound("score", "/examples/sounds/score.mp3");
+loadSound("wooosh", "/examples/sounds/wooosh.mp3");
+loadSound("hit", "/examples/sounds/hit.mp3");
 ```
 
-![src/main.js](/static/img/html5-game/sky-blue-bg.png)
+- `loadSprite()` loads the bean's image, which we'll use for the player character.
 
-Now, our game would look like below
+## Setting Gravity
 
-![skyblue background](/static/img/html5-game/sky-blue-bg2.png)
-
-Lets add a floor to the game. We can add a rectangular floor by below command
+Next, we define gravity using:
 
 ```js
-k.add([
-  rect(width(), 48),
-  outline(4),
-  area(),
-  pos(0, height() - 48),
-  body({
-    isStatic: true,
-  }),
-]);
+setGravity(3200);
 ```
 
-![src/main.js](/static/img/html5-game/rect-floor-code.png)
+This sets the gravity of the game world, making the bean fall unless it jumps. It ensures our bean behaves as expected in a physics-based environment.
 
-Do notice the body() component, it gives our floor a physical body
+## Creating the Main Game Scene
 
-![rectangular floor](/static/img/html5-game/rect-floor-browser.png)
-
-## Add player
-
-Now, its time to add a player. First we need to create the sprite for the player. This time, we would create a pixel image of a red ball to be used as player sprite. We would use [piskel](https://www.piskelapp.com/) to create ball sprite.
+KaplayJS organizes game logic in **scenes**, and we define the core gameplay inside a "game" scene:
 
 ```js
-k.loadSprite("player",")
+scene("game", () => {
+  // Game logic goes here
+});
 ```
 
-## Add controls
+Inside the scene, we initialize the bean and the pipes.
 
-## Add enemies
+## The Bean Character
 
-## Add levels
+The bean is the player character, and it's created with the following:
 
-## Push games to itch.io
+```js
+const bean = add([sprite("bean"), pos(width() / 4, 0), area(), body()]);
+```
+
+Here&apos;s what each part does:
+
+- `sprite("bean")`: Draws the bean sprite.
+- `pos(width() / 4, 0)`: Places the bean at a quarter of the screen&apos;s width and the top of the screen.
+- `area()`: Adds a collider for detecting collisions.
+- `body()`: Makes the bean affected by gravity and allows it to jump.
+
+## Jumping Mechanism
+
+To make the game interactive, the bean needs to jump. We enable jumping with several input options:
+
+```js
+onKeyPress("space", () => bean.jump(JUMP_FORCE));
+onGamepadButtonPress("south", () => bean.jump(JUMP_FORCE));
+onClick(() => bean.jump(JUMP_FORCE));
+```
+
+- **Spacebar** for keyboard control.
+- **Gamepad** button for controller users.
+- **Clicking** for mobile or desktop users.
+
+## Generating Pipes
+
+The game&apos;s challenge comes from the pipes, which the bean must avoid. Here&apos;s how we generate them:
+
+```js
+function spawnPipe() {
+  const h1 = rand(PIPE_MIN, height() - PIPE_MIN - PIPE_OPEN);
+  const h2 = height() - h1 - PIPE_OPEN;
+
+  add([pos(width(), 0), rect(64, h1), area(), move(LEFT, SPEED), "pipe"]);
+
+  add([
+    pos(width(), h1 + PIPE_OPEN),
+    rect(64, h2),
+    area(),
+    move(LEFT, SPEED),
+    "pipe",
+    { passed: false },
+  ]);
+}
+```
+
+- `rand()` generates random heights for the pipes.
+- `add()` creates the pipes as rectangles that move from right to left at a set speed.
+- `move(LEFT, SPEED)` keeps the pipes moving across the screen.
+
+We generate a new pipe every second:
+
+```js
+loop(1, () => spawnPipe());
+```
+
+## Scoring and Collisions
+
+The game adds points every time the bean successfully passes through a pair of pipes. This is handled with an update event:
+
+```js
+onUpdate("pipe", (p) => {
+  if (p.pos.x + p.width <= bean.pos.x && p.passed === false) {
+    addScore();
+    p.passed = true;
+  }
+});
+```
+
+If the bean collides with a pipe, it&apos;s game over:
+
+```js
+bean.onCollide("pipe", () => {
+  go("lose", score);
+  play("hit");
+  addKaboom(bean.pos);
+});
+```
+
+## The Lose Scene
+
+When the player loses (either by hitting a pipe or falling off the screen), we switch to a "lose" scene that displays the final score:
+
+```js
+scene("lose", (score) => {
+  add([
+    sprite("bean"),
+    pos(width() / 2, height() / 2 - 108),
+    scale(3),
+    anchor("center"),
+  ]);
+  add([
+    text(score),
+    pos(width() / 2, height() / 2 + 108),
+    scale(3),
+    anchor("center"),
+  ]);
+
+  onKeyPress("space", () => go("game"));
+  onClick(() => go("game"));
+});
+```
+
+Here, the player can restart the game by pressing space or clicking anywhere.
+
+## Game Initialization
+
+Finally, the game starts with this line:
+
+```js
+go("game");
+```
+
+This loads the "game" scene and kicks off the gameplay.
