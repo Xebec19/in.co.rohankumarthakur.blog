@@ -5,11 +5,11 @@ date: 09/14/2024
 authors: rohan
 ---
 
-![https://unsplash.com/photos/red-blue-and-yellow-lego-minifig-pRS6itEjhyI](/img/html5-game/boukaih-pRS6itEjhyI-unsplash.webp)
-
 ## Introduction
 
 Building 2D games is both fun and a great way to improve your coding skills. In this tutorial, we'll create a simple game using KaplayJS, a JavaScript game development library. The game is about controlling a character, "the bean," and helping it jump over pipes to avoid collisions. Let's break down the steps!
+
+![https://unsplash.com/photos/red-blue-and-yellow-lego-minifig-pRS6itEjhyI](/img/html5-game/boukaih-pRS6itEjhyI-unsplash.webp)
 
 ## Setting Up the Game
 
