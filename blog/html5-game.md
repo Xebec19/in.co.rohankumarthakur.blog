@@ -5,6 +5,15 @@ date: 09/14/2024
 authors: rohan
 ---
 
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta charset="UTF-8"></meta>
+<meta name="author" content="Rohan Thakur"></meta>
+<meta property="og:title" content="Building a HTML5 game with KaplayJS"></meta>
+<meta property="og:description" content="Learn the basics of building a simple HTML5 game using KaplayJS with this tutorial. It covers key steps like setting up the environment, adding character controls, handling collisions, and scoring to help you create your first 2D game."></meta>
+<meta property="og:image" content="/img/html5-game/boukaih-pRS6itEjhyI-unsplash.webp"></meta>
+</head>
+
 ## Introduction
 
 Building 2D games is both fun and a great way to improve your coding skills. In this tutorial, we'll create a simple game using KaplayJS, a JavaScript game development library. The game is about controlling a character, "the bean," and helping it jump over pipes to avoid collisions. Let's break down the steps!
