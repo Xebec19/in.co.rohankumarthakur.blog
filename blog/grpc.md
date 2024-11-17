@@ -10,3 +10,146 @@ tags: ["go", "grpc"]
 ### What is gRPC ?
 
 gRPC stands for Google Remote Procedure Calls and it is a framework for building APIs. It uses HTTP/2 which allows developers to build high performance APIs. Though it has limited browser support, it is better suited for internal systems that require real-time streaming and has large data loads. In this tutorial we would code some simple gRPC APIs. Checkout this video if you wish to know more about [gRPC](https://youtu.be/E3ez34fdC0k?si=EHW15Eq7QiboCr9P)
+
+### Setup
+
+First we need to install protocol buffer compiler. For installation instructions, see [Protocol Buffer Compiler Installation](https://grpc.io/docs/protoc-installation/)
+
+We would also need to install protocol compiler plugins for Go using the following commands:
+
+```sh
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+```
+
+Update your **PATH** so that the **protoc** compiler can find the plugins
+
+```sh
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
+### Generate gRPC code
+
+Now, after initializing a project, we would create a folder that would contain our proto files. In our case lets name it **greeting**.
+
+```sh
+mkdir greeting && cd greeting && touch greeting.proto
+```
+
+Inside **greeting.proto** we would define the structure of required request, response and the functions.
+
+```proto
+syntax = "proto3";
+
+option go_package = "github.com/Xebec19/probable-lamp/greeting";
+
+package greeting;
+
+service greetingService {
+    rpc SayHello(GreetingRequest) returns (GreetingResponse) {}
+}
+
+message GreetingRequest{
+    string name = 1;
+}
+
+message GreetingResponse {
+    string message = 1;
+}
+```
+
+In **greeting.proto** we have defined a service **greetingService** that would return a simple rpc method that takes a request and sends back a response.
+
+Before we use the new service method, we need to compile the **.proto** file. Inside the root directory of the project, we would run the following command:
+
+```sh
+protoc --go_out=. --go_opt=paths=source_relative \
+    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+    greeting/greeting.proto
+```
+
+This will generate **greeting_grpc.pb.go** and **greeting.pb.go** files, which contain:
+
+1. Code for populating, serializing and retrieving **GreetingRequest** and **GreetingResponse** message types.
+2. Generated client and server code.
+
+### Creating the server
+
+Now we would create a **server** folder, which would contain code for the server. Open **server/main.go** and create a server and add methods to it.
+
+```go
+type server struct {
+    ...
+}
+
+func (s *server) SayGreeting(ctx context.Context, in *pb.GreetingRequest) (*pb.GreetingResponse, error) {
+	...
+}
+```
+
+Lets create a simple rpc method **SayGreeting** that takes a name and returns a string.
+
+```go
+func (s *server) SayGreeting(ctx context.Context, in *pb.GreetingRequest) (*pb.GreetingResponse, error) {
+	return &pb.GreetingResponse{Message: "Hello " + in.GetName()}, nil
+}
+```
+
+Once, we have implemented all our methods, we would start our gRPC server on a given port.
+
+```go
+lis, err := net.Listen("tcp", ":50051")
+if err != nil {
+    log.Fatalf("failed to listen on port 50051: %v", err)
+}
+
+s := grpc.NewServer()
+pb.RegisterGreetingServiceServer(s, &server{})
+
+s.Serve(lis)
+```
+
+Finally, our server would look like below.
+
+```go
+package main
+
+import (
+	"context"
+	"log"
+	"net"
+
+	pb "github.com/Xebec19/probable-lamp/greeting"
+	"google.golang.org/grpc"
+)
+
+type server struct {
+	pb.UnimplementedGreetingServiceServer
+}
+
+func (s *server) SayGreeting(ctx context.Context, in *pb.GreetingRequest) (*pb.GreetingResponse, error) {
+	return &pb.GreetingResponse{Message: "Hello " + in.GetName()}, nil
+}
+
+func main() {
+	lis, err := net.Listen("tcp", ":50051")
+	if err != nil {
+		log.Fatalf("failed to listen on port 50051: %v", err)
+	}
+
+	s := grpc.NewServer()
+	pb.RegisterGreetingServiceServer(s, &server{})
+
+    log.Printf("gRPC server listening at %v", lis.Addr())
+
+    if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+}
+```
+
+In above code, we build a **server** that listens to port **:50051** and added a **SayGreeting** method to it, which accepts a name parameter and returns a string.
+
+### Creating the client
+
+In Go, we also call a client as stub.
