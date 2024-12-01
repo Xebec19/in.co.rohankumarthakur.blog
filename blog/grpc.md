@@ -46,7 +46,7 @@ option go_package = "github.com/Xebec19/probable-lamp/greeting";
 package greeting;
 
 service greetingService {
-    rpc SayHello(GreetingRequest) returns (GreetingResponse) {}
+    rpc SayGreeting(GreetingRequest) returns (GreetingResponse) {}
 }
 
 message GreetingRequest{
@@ -152,4 +152,111 @@ In above code, we build a **server** that listens to port **:50051** and added a
 
 ### Creating the client
 
-In Go, we also call a client as stub.
+In Go, we also call a client as stub. This client interacts with the server and invokes the RPC methods defined in the .proto file. Let&apos;s create a client/main.go file to implement the client.
+
+The client first needs to establish a connection with the gRPC server.
+
+```go
+conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+if err != nil {
+	log.Fatalf("failed to connect to gRPC server at localhost:50051: %v", err)
+}
+
+defer conn.Close()
+```
+
+Using the connection, we initialize a client for the GreetingService:
+
+```go
+c := pb.NewHelloWorldServiceClient(conn)
+```
+
+To allow the client to accept the --name flag, we use Go's flag package. Here's how you can implement it:
+
+```go
+name := flag.String("name", "World", "Name to greet")
+flag.Parse()
+```
+
+We then call the SayGreeting method, passing a GreetingRequest message:
+
+```go
+ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+defer cancel()
+
+r, err := c.SayGreeting(ctx, &pb.GreetingRequest{Name: *name})
+if err != nil {
+	log.Fatalf("error calling function SayGreeting: %v", err)
+}
+
+log.Printf("Response from gRPC server's SayGreeting function: %s", r.GetMessage())
+```
+
+Here&apos;s the complete code for the client:
+
+```go
+package main
+
+import (
+	"context"
+	"flag"
+	"log"
+	"time"
+
+	pb "github.com/Xebec19/probable-lamp/greeting"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+)
+
+var name = flag.String("name", "Default Name", "Name to greet")
+
+func main() {
+
+	flag.Parse()
+
+	conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("failed to connect to gRPC server at localhost:50051: %v", err)
+	}
+
+	defer conn.Close()
+
+	c := pb.NewGreetingServiceClient(conn)
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+
+	r, err := c.SayGreeting(ctx, &pb.GreetingRequest{Name: *name})
+	if err != nil {
+		log.Fatalf("error calling function SayGreeting: %v", err)
+	}
+
+	log.Printf("Response from gRPC server's SayGreeting function: %s", r.GetMessage())
+}
+```
+
+### Running the Client and Server
+
+To test the setup:
+
+1. Start the server using below command:
+
+```sh
+go run server/main.go
+```
+
+2. Start the client with the --name flag:
+
+```sh
+go run client/main.go --name=Rohan
+```
+
+3. The client will display the custom greeting message
+
+```sh
+2024/12/01 22:44:41 Response from gRPC server's SayGreeting function: Hello Rohan
+```
+
+This concludes our introduction to gRPC with Go. You&apos;ve successfully built a client-server application using gRPC!
+
+[Source Code](https://github.com/Xebec19/probable-lamp)

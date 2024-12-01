@@ -7,3 +7,11 @@ javascript:
   label: Javascript
   permalink: /javascript
   # description: Hello tag description
+
+go:
+  label: Golang
+  permalink: /go
+
+grpc:
+  label: gRPC
+  permalink: /grpc
