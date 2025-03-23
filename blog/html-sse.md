@@ -12,6 +12,8 @@ It always make me curious that how codeforces provide real time notifications to
 
 ![](/img/volodymyr-hryshchenko-V5vqWC9gyEU-unsplash.jpg)
 
+<!-- truncate -->
+
 ### What is HTML SSE ?
 
 As mentioned by w3schools "Server-Sent Events (SSE) allow a web page to get updates from a server". Allright! we do not need to send repeated request to the server for fetching update. We can use Server-Sent Events through which our server will send update to the website. Before we dig further, let's have a look on the list of browsers which supports Server-Sent Events.

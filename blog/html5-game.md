@@ -20,6 +20,8 @@ Building 2D games is both fun and a great way to improve your coding skills. In 
 
 ![https://unsplash.com/photos/red-blue-and-yellow-lego-minifig-pRS6itEjhyI](/img/html5-game/boukaih-pRS6itEjhyI-unsplash.webp)
 
+<!-- truncate -->
+
 ## Setting Up the Game
 
 First, let's set up the game project using the Kaplay CLI tool:

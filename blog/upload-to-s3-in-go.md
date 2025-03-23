@@ -10,6 +10,8 @@ tags: ["web development", "go", "aws", "s3"]
 
 Amazon S3 (Simple Storage Service) is a scalable object storage service used widely for various data storage needs. This guide will walk you through the process of uploading a file to an S3 bucket, from creating the bucket and setting up the necessary permissions, to writing and testing the code that performs the upload. Let's get started!
 
+<!-- truncate -->
+
 ## Create an S3 Bucket
 
 First we need to create a bucket in S3.

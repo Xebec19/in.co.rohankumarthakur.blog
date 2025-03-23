@@ -12,6 +12,8 @@ In the world of software development, effectively managing database schema chang
 
 ![Photo by Jan Antonin Kolar on Unsplash](/img/jan-antonin-kolar-lRoX0shwjUQ-unsplash.jpg)
 
+<!-- truncate -->
+
 ### Prerequisites
 
 Before we begin, having some knowledge of the Go programming language would be helpful. Additionally, make sure you have Go installed on your system and a working database (e.g., PostgreSQL, MySQL) to which you want to apply migrations.
