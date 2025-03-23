@@ -45,11 +45,15 @@ const config: Config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/Xebec19/docusauras-blog/tree/main/blog",
+          editUrl:
+            "https://github.com/Xebec19/in.co.rohankumarthakur.blog/tree/main/blog",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
+          postsPerPage: "ALL",
+          blogSidebarTitle: "All posts",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: "./src/css/custom.css",

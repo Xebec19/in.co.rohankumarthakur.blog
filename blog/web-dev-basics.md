@@ -16,6 +16,8 @@ On the flip side, the back-end encompasses server-side logic that grants dynamis
 
 Now, let's delve into the fundamentals of web browsing and how the internet works.
 
+<!-- truncate -->
+
 ## Browsing the web
 
 As we enter "www.google.com" in our browser's address bar, the query journeys to the ISP (Internet Service Provider), which looks up the query in the DNS (Domain Name Service). ISPs are substantial entities providing internet services to users like us, and DNS acts as a registry mapping domain names to unique IP addresses. These IP addresses serve as distinctive identifiers for each computer connected to the internet.
