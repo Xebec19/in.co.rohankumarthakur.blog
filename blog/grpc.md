@@ -1,7 +1,7 @@
 ---
 slug: go-grpc-guide
 title: "gRPC for Go Developers: A Practical Guide"
-date: 11/03/2024
+date: 03/20/2025
 authors: rohan
 tags: ["go", "grpc"]
 ---
