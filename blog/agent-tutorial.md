@@ -1,63 +1,75 @@
 ---
 slug: basic-ai-agent
-title: "Building a Simple AI Agent in Python"
+title: "Build a Simple AI Agent with Python and CrewAI"
 description: "Learn to build a simple AI agent using Python and CrewAI that searches the internet and generates blog summaries."
 date: 04/06/2025
 authors: rohan
-tags: ["python", "ai", "agent"]
-image: /img/gerard-siderius-YeoSV_3Up-k-unsplash.jpg
+tags: ["python", "ai"]
+image: /img/ai-agent/gerard-siderius-YeoSV_3Up-k-unsplash.jpg
 ---
 
-### What is this tutorial about?
+> **TL;DR**: Build a Python AI agent using CrewAI, Serper, and Google 2.0 Flash APIs. The agent researches a topic and writes a blog post.  
+> 📦 [GitHub Repo](https://github.com/Xebec19/congenial-garbanzo)
 
-In this tutorial, you&apos;ll learn to build a simple AI agent using Python and CrewAI. The agent will search the internet and generate a blog summary using the free Google 2.0 Flash and Serper APIs. This beginner-friendly guide walks you through each step clearly.
+### Introduction
 
-![Photo by <a href="https://unsplash.com/@siderius_creativ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Gerard Siderius</a> on <a href="https://unsplash.com/photos/a-robot-holding-a-gun-next-to-a-pile-of-rolls-of-toilet-paper-YeoSV_3Up-k?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>](/img/gerard-siderius-YeoSV_3Up-k-unsplash.jpg)
+In this guide, you'll learn how to build a basic AI agent using Python and CrewAI. The agent will search the internet and generate a blog summary using the free Google 2.0 Flash and Serper APIs. This beginner-friendly tutorial walks you through each step.
+
+![Photo by <a href="https://unsplash.com/@siderius_creativ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Gerard Siderius</a> on <a href="https://unsplash.com/photos/a-robot-holding-a-gun-next-to-a-pile-of-rolls-of-toilet-paper-YeoSV_3Up-k?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>](/img/ai-agent/gerard-siderius-YeoSV_3Up-k-unsplash.webp)
+
+<!-- truncate -->
 
 ### Getting Started
 
-To get started, ensure you have Python installed on your system. You can download it from the official [Python website](https://www.python.org/downloads/). Once you have Python set up, create a new directory for your project and navigate to it in your terminal.
+Ensure Python is installed on your system. You can download it from the [official website](https://www.python.org/downloads/).
+
+Create a new project directory:
 
 ```bash
 mkdir simple-ai-agent
+
 cd simple-ai-agent
 ```
 
-Inside this directory, create a **_requirements.txt_** file to manage your dependencies. Add the following lines to it:
+Create a requirements.txt file and add the necessary packages:
 
-![requirements.txt](/img/ai-agent/requirements.png)
+![requirements.txt](/img/ai-agent/requirements.webp)
 
-Now, we need to install the required packages. You can do this by running the following command in your terminal:
+Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Then we need to create a **_agent.py_** file. This file will contain the code for our AI agent. You can create it using the following command:
+Create the main Python file:
 
 ```bash
-touch main.py
+touch agent.py
 ```
 
 ## Set Up
 
-Open the **_main.py_** file in your favorite text editor and add the following code:
+Open **_agent.py_** and add the initial setup code:
 
-![main.py](/img/ai-agent/install-dependencies.png)
+![agent.py](/img/ai-agent/install-dependencies.webp)
 
-In above code, we would be using the [**_Serper_**](https://serper.dev/) to search the internet and [**_Google2.0Flash_** APIs](https://aistudio.google.com/) as the llm. We will also use the **_CrewAI_** library to create our agent.
+This code uses:
 
-Now we would save our API keys in **_.env_** file. Create a new file named **_.env_** in the same directory as your **_main.py_** file and add the following lines to it:
+- [**_CrewAI_**](https://docs.crewai.com/introduction) : A library for creating AI agents.
+- [**_Serper_**](https://serper.dev/) : An API for searching the internet.
+- [**_Google 2.0 Flash_**](https://aistudio.google.com/) : A free LLM API for generating text.
 
-![.env](/img/ai-agent/env-vars.png)
+Create a **_.env_** file and add your API keys:
 
-After defining the API keys, we need to load them in our code. We can do this using the **_dotenv_** library. Add the following lines to your **_main.py_** file:
+![.env](/img/ai-agent/env-vars.webp)
 
-![load-env](/img/ai-agent/load-env.png)
+Load the environment variables in **_main.py_**:
 
-## Define tools and llm
+![load-env](/img/ai-agent/load-env.webp)
 
-Now, we need to define the tools and llm that our agent will use. We can do this using the **_Serper_** and **_Google2.0Flash_** APIs. Add the following lines to your **_main.py_** file:
+## Define Tools and LLM
+
+Define the tools and LLM for the agent:
 
 ```python
 from crewai_tools import SerperDevTool
@@ -68,11 +80,11 @@ search_tool = SerperDevTool()
 llm = GoogleGenerativeAI(model="gemini-2.0-flash",google_api_key=GOOGLE_AI_API_KEY)
 ```
 
-![tools](/img/ai-agent/tools-and-llm.png)
+![tools](/img/ai-agent/tools-and-llm.webp)
 
 ## User Input
 
-Now, we would prompt the user to enter a topic for the blog summary. To do this, we would add below lines to our **_main.py_** file:
+Prompt the user to enter a topic:
 
 ```python
 print("Welcome to AI Researcher and Writer!")
@@ -80,21 +92,24 @@ print("Welcome to AI Researcher and Writer!")
 topic = input("Enter the topic: ") # Prompt user to enter a topic
 ```
 
-## Creating the agents
+## Creating the Agents
 
-Now we would create two agents. One would do research about the topic and the other would generate the blog summary. To do this, we would add below lines to our **_main.py_** file:
+Create two agents: a researcher and a writer.
 
 ```python
 researcher = Agent(
-    role="Senior Researcher",
-    goal=f"Uncover ground breaking technologies in {topic}",
+    role="Researcher",
+    goal=f"Uncover interesting findings about {topic}",
     verbose=True,
     memory=True,
     backstory=(
     """
-        Driven by curiousity, you're at the forefront of
-        innovation, eager to explore and share knowledge that could change
-        the change
+    As a researcher, you are committed to uncovering the
+    latest and most interesting findings in your field. You
+    have a knack for finding hidden gems of information and
+    presenting them in an engaging way. Your goal is to
+    illuminate the topic at hand, providing insights that are
+    both informative and thought-provoking.
     """
     ),
     tools=[search_tool],
@@ -104,14 +119,15 @@ researcher = Agent(
 
 writer = Agent(
     role="Writer",
-    goal=f"Narrate compelling tech stories about {topic}",
+    goal=f"Write intuitive article about {topic}",
     verbose=True,
     memory=True,
     backstory=(
     """
-        With a flair for simplifying complex topics, you craft
-        engaging narratives that captivate and educate, bringing new
-        discoveries to light in an accessible manner.
+    As a writer, you are dedicated to crafting engaging
+    and informative articles. You have a talent for
+    transforming complex ideas into accessible language,
+    making them relatable to a wide audience.
     """
     ),
     tools=[search_tool],
@@ -119,11 +135,12 @@ writer = Agent(
     allow_delegation=False
 )
 
+
 ```
 
-## Creating the tasks
+## Creating the Tasks
 
-Now we would create the tasks for the agents. The researcher agent will do the research and the writer agent will generate the blog summary. To do this, we would add below lines to our **_main.py_** file:
+Define tasks for each agent:
 
 ```python
 
@@ -156,9 +173,9 @@ write_task = Task(
 
 ```
 
-## Running the tasks
+## Running the Tasks
 
-Now we would put everything together and kickoff the tasks. To do this, we would add below lines to our **_main.py_** file:
+Run the agent crew sequentially:
 
 ```python
 crew = Crew(
@@ -172,14 +189,20 @@ print(result)
 
 ```
 
-Our final **_main.py_** file should look like this:
+Your **_agent.py_** should now resemble:
 
-![main.py](/img/ai-agent/final-code.png)
+![agent.py](/img/ai-agent/final-code.webp)
 
-Now its time to hit the terminal and run the code. You can do this by running the following command in your terminal:
+Execute the code:
 
 ```bash
-python main.py
+python agent.py
 ```
 
-![run](/img/ai-agent/run.png)
+![run](/img/ai-agent/run.webp)
+
+The generated blog post will be saved as **_agent.py_** in the project directory. Open it in any text editor.
+
+![blog-post](/img/ai-agent/blog-post.webp)
+
+You can find the demo code on [Github Repo](https://github.com/Xebec19/congenial-garbanzo)
