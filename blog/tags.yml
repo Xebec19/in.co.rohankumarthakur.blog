@@ -15,3 +15,13 @@ go:
 grpc:
   label: gRPC
   permalink: /grpc
+
+python:
+  label: Python
+  permalink: /python
+  description: Python Programming
+
+ai:
+  label: AI
+  permalink: /ai
+  description: Artificial Intelligence
