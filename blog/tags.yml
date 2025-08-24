@@ -6,7 +6,6 @@ games:
 javascript:
   label: Javascript
   permalink: /javascript
-  # description: Hello tag description
 
 go:
   label: Golang
@@ -25,3 +24,8 @@ ai:
   label: AI
   permalink: /ai
   description: Artificial Intelligence
+
+strapi:
+  label: strapi
+  permalink: /strapi
+  description: Strapi CMS
