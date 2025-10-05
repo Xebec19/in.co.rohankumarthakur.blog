@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-const CLARITY_ID = "gqkh1r5ux0"; // replace this
+function loadClarity(clarityID: string) {
+  if (!clarityID) {
+    return;
+  }
 
-function loadClarity() {
   (function (c, l, a, r, i, t, y) {
     c[a] =
       c[a] ||
@@ -15,14 +18,17 @@ function loadClarity() {
     t.src = "https://www.clarity.ms/tag/" + i;
     y = l.getElementsByTagName(r)[0];
     y.parentNode.insertBefore(t, y);
-  })(window, document, "clarity", "script", CLARITY_ID);
+  })(window, document, "clarity", "script", clarityID);
 }
 
 export default function Root({ children }: { children: React.ReactNode }) {
+  const { siteConfig } = useDocusaurusContext();
+  const clarityID = siteConfig.customFields.clarityID as string;
+
   useEffect(() => {
     const cookieValue = getCookieConsentValue();
     if (cookieValue === "true") {
-      loadClarity();
+      loadClarity(clarityID);
     }
   }, []);
 
@@ -70,7 +76,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
         buttonWrapperClasses="flex gap-3"
         expires={150}
         onAccept={() => {
-          loadClarity();
+          loadClarity(clarityID);
         }}
       >
         <span style={{ lineHeight: 1.6 }}>
