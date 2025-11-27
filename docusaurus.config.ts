@@ -1,8 +1,6 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import dotenv from "dotenv";
-dotenv.config();
 
 const config: Config = {
   title: "Rohan Kumar Thakur",
@@ -69,6 +67,14 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+
+  plugins: [
+    [
+      "@gracefullight/docusaurus-plugin-microsoft-clarity",
+      { projectId: "gqkh1r5ux0" },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: "img/og-image.webp",
@@ -161,67 +167,18 @@ const config: Config = {
     metadata: [
       {
         name: "keywords",
-        content:
-          "rohan kumar thakur, full stack developer, react developer, golang developer, aws, nodejs, postgresql, tech blog, web development, software engineering",
-      },
-      {
-        name: "description",
-        content:
-          "Full stack developer specializing in React, Go, AWS, Node.js, and PostgreSQL. Tech blog featuring web development tutorials and insights.",
-      },
-      {
-        name: "author",
-        content: "Rohan Kumar Thakur",
-      },
-      {
-        name: "robots",
-        content: "index, follow",
-      },
-      {
-        property: "og:type",
-        content: "website",
-      },
-      {
-        property: "og:title",
-        content: "Rohan Kumar Thakur - Full Stack Developer & Tech Blogger",
-      },
-      {
-        property: "og:description",
-        content:
-          "Full stack developer specializing in React, Go, AWS, Node.js, and PostgreSQL. Tech blog featuring web development tutorials and insights.",
-      },
-      {
-        name: "twitter:card",
-        content: "summary_large_image",
-      },
-      {
-        name: "twitter:creator",
-        content: "@tweets_thakur",
+        content: "rohan kumar thakur, developer, blogs",
       },
     ],
   } satisfies Preset.ThemeConfig,
 
   headTags: [
-    // Declare preconnect tags for performance
+    // Declare a <link> preconnect tag
     {
       tagName: "link",
       attributes: {
         rel: "preconnect",
         href: "https://rohankumarthakur.co.in",
-      },
-    },
-    {
-      tagName: "link",
-      attributes: {
-        rel: "preconnect",
-        href: "https://www.google-analytics.com",
-      },
-    },
-    {
-      tagName: "link",
-      attributes: {
-        rel: "preconnect",
-        href: "https://www.clarity.ms",
       },
     },
     // Declare some json-ld structured data
@@ -232,38 +189,13 @@ const config: Config = {
       },
       innerHTML: JSON.stringify({
         "@context": "https://schema.org/",
-        "@type": "Person",
+        "@type": "Organization",
         name: "Rohan Kumar Thakur",
         url: "https://rohankumarthakur.co.in/",
-        image: "https://rohankumarthakur.co.in/img/blog-logo.png",
-        sameAs: [
-          "https://github.com/Xebec19",
-          "https://www.linkedin.com/in/rohan-kumar-thakur",
-          "https://twitter.com/tweets_thakur",
-          "https://stackoverflow.com/users/13674513/rohan-kumar-thakur",
-        ],
-        jobTitle: "Full Stack Developer",
-        worksFor: {
-          "@type": "Organization",
-          name: "Vectoredge",
-        },
-        description:
-          "Full stack developer specializing in React, Go, AWS, Node.js, and PostgreSQL.",
-        knowsAbout: [
-          "React",
-          "Go",
-          "AWS",
-          "Node.js",
-          "PostgreSQL",
-          "Web Development",
-        ],
+        logo: "img/logo.svg",
       }),
     },
   ],
-
-  customFields: {
-    clarityID: process.env.DOCUSAURUS_CLARITY_ID,
-  },
 };
 
 export default config;
