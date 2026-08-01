@@ -12,7 +12,7 @@ title: About Me
 
 <div className="content-container">
   <div>
-    I am a full stack developer currently working at <a href="https://vectoredge.io/">Vectoredge</a>, where I am involved in developing web applications using technologies such as React, Go, and AWS. Additionally, I actively use Nodejs and PostgreSQL in my personal projects.
+    I am a full stack developer currently working at <a href="https://www.hcltech.com/">HCLTech</a>, where I am involved in developing web applications using technologies such as React, Go, and AWS. Additionally, I actively use Nodejs and PostgreSQL in my personal projects.
   </div>
 
   <div style={{marginTop: '1rem'}}>

@@ -4,7 +4,6 @@ slug: database-migration-in-go-with-go-migrate
 title: "Database Migrations in Go with go-migrate"
 date: 08/01/2026
 authors: rohan
-draft: true
 tags: ["web development", "go", "database"]
 -------------------------------------------
 
