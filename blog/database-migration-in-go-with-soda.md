@@ -1,146 +1,190 @@
 ---
-slug: database-migration-in-go-with-soda
-title: "Database Migration with Soda"
-date: 08/13/2023
+
+slug: database-migration-in-go-with-go-migrate
+title: "Database Migrations in Go with go-migrate"
+date: 08/01/2026
 authors: rohan
 draft: true
 tags: ["web development", "go", "database"]
----
+-------------------------------------------
 
 ## Introduction
 
-In the world of software development, effectively managing database schema changes is crucial as applications evolve over time. To ensure a smooth transition between different versions of the database schema, it's essential to use database migration tools that provide a systematic way to apply and track these changes. In this article, we'll explore how to set up database migration for a Go application using the popular migration tool called "Soda." Whether you're an experienced Go developer or new to the language, we'll guide you through the process in a clear and concise manner. Let's dive in!
+As applications evolve, database schemas change as well. You might need to add new tables, modify existing columns, or remove outdated ones. Managing these changes manually quickly becomes difficult, especially when multiple developers are working on the same project.
+
+Database migration tools solve this problem by keeping track of schema changes and applying them in a predictable way. They also make it easy to roll back changes if something goes wrong.
+
+In this article, we'll learn how to manage database migrations in Go using **go-migrate**. We'll install the CLI, create migration files, apply them to a PostgreSQL database, and roll them back.
 
 ![Photo by Jan Antonin Kolar on Unsplash](/img/jan-antonin-kolar-lRoX0shwjUQ-unsplash.jpg)
 
 <!-- truncate -->
 
-### Prerequisites
+## Prerequisites
 
-Before we begin, having some knowledge of the Go programming language would be helpful. Additionally, make sure you have Go installed on your system and a working database (e.g., PostgreSQL, MySQL) to which you want to apply migrations.
+Before we begin, make sure you have:
 
-## Steps
+* A PostgreSQL database (or any supported database)
+* Docker (optional, if you want to run PostgreSQL in a container)
+* Basic familiarity with SQL
 
-### Step 1: Project Initialization
+---
 
-To get started with database migrations, let's first initialize our Go project. Open your terminal or command prompt and navigate to the directory where you want to create your project. Run the following command:
+## Step 1: Install go-migrate
 
-    go mod init example.com/myproject
+We'll use the **go-migrate CLI** to create and run migrations.
 
-For example:
-
-```
-go mod init github.com/Xebec19/soda-example
-```
-
-This command initializes a new Go module for our project.
-
-### Step 2: Installing Soda
-
-Soda is a powerful database migration and query library for Go. To install Soda, execute the following command in your terminal:
-
-```
- go install github.com/gobuffalo/pop/v6/soda@latest
-```
-
-You can find more information about Soda [link](https://gobuffalo.io/documentation/database/soda/)
-
-### Step 3: Setting up Database Connection
-
-Before we proceed, let's ensure we have a database ready. In this example, we'll assume a database named "sodademo" already exists.
-
-![screenshot](/img/migration-create-database.png)
-
-Next, we need to create a `database.yml` file to specify the connection details:
-
-```
-development:
-	dialect: postgres
-	url: "postgresql://username:your_password@127.0.0.1:5432/sodademo"
-	pool: 5
-
-production:
-	url: "postgres://username:your_password@127.0.0.1:5432/sodademo"
-```
-
-In the above configuration, make sure to replace `<your_password>` with the actual password for your database user. Also, feel free to adjust the address and other settings based on your environment (e.g., development, production).
-
-### Step 4: Creating a Migration
-
-Now, let's create our first migration. Run the following command:
+Install it using:
 
 ```sh
-soda generate sql migration-name
+curl -L https://github.com/golang-migrate/migrate/releases/latest/download/migrate.linux-amd64.tar.gz | tar xvz
+sudo mv migrate /usr/local/bin/
 ```
 
-Replace `<migration_name>` with a descriptive name for your migration. This command will generate two migration files: an "up" migration file and a corresponding "down" migration file. The "up" file contains the changes we want to apply to the database schema, while the "down" file specifies how to revert those changes.
+![Install go-migrate](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/install-script.png?updatedAt=1785054634321)
 
-For the "up" migration, let's create a table:
-
-```
-create table users (
-
-user_id serial primary key,
-
-first_name text not null,
-
-last_name text,
-
-email varchar not null unique,
-
-phone integer,
-
-password varchar not null,
-
-created_on timestamptz DEFAULT now(),
-
-updated_on timestamptz DEFAULT now(),
-
-status varchar(10) default 'active'
-
-)
-```
-
-For the "down" migration, let's drop the table:
-
-```
-drop table users;
-```
-
-### Step 5: Applying Migrations
-
-Now it's time to apply the migrations and update our database schema. Execute the following command:
+Verify that the installation was successful:
 
 ```sh
-    soda migrate
+migrate -version
 ```
 
-This command will execute all pending migrations. You can find more information about migration commands [here](https://gobuffalo.io/documentation/database/migrations/).
+![Verify installation](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/verify-install.png)
 
-Let's run our migration file.
+---
 
-![screenshot](/img/migration-up-mig.png)
+## Step 2: Set Up PostgreSQL
 
-After running the "up" migration script, the table will be created in our database.
+If you already have PostgreSQL running locally, you can skip this step.
 
-![screenshot](/img/migrate-up.png)
+We'll use the following Docker Compose file to start a PostgreSQL container.
 
-### Step 6: Rolling Back Migrations
+![docker-compose.yaml](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/postgres-docker.png)
 
-If we need to roll back the last applied migration, we can use the following command:
+Start the database:
+
+![Start PostgreSQL](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/up-postgres-docker-compose.png)
+
+We'll also need the PostgreSQL client (`psql`) to interact with the database.
+
+Install it using:
 
 ```sh
-    soda migrate down
+sudo apt update
+sudo apt install postgresql-client
 ```
 
-Executing the "down" script allows us to revert the changes made by the "up" script.
+![Install psql](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/install-psql.png)
 
-![screenshot](/img/migrate-down.png)
+Once PostgreSQL is running, create a database that we'll use for this tutorial.
 
-Now, if we check our database, the user table has been deleted.
+![Create database](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/create-database.png)
 
-![screenshot](/img/migrate-db.png)
+---
 
-Congratulations on successfully setting up database migration for your Go application using Soda!
+## Step 3: Create Your First Migration
+
+Create a migration by running:
+
+```sh
+migrate create -ext sql -dir . -seq init_schema
+```
+
+![Create migration](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/create-migration-scripts.png)
+
+Let's understand what each flag does:
+
+* `-ext sql` creates SQL migration files.
+* `-dir .` creates the files in the current directory.
+* `-seq` uses sequential numbering (`000001`, `000002`, ...).
+* `init_schema` is the migration name.
+
+This command creates two files:
+
+```
+000001_init_schema.up.sql
+000001_init_schema.down.sql
+```
+
+The **up** migration applies your changes, while the **down** migration reverses them.
+
+---
+
+## Step 4: Apply the Migration
+
+Open `000001_init_schema.up.sql`.
+
+First, create a table.
+
+![Create table](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/create-table.png)
+
+Then insert a few rows.
+
+![Insert data](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/insert-data.png)
+
+Now run the migration:
+
+```sh
+migrate \
+  -path <path-to-migrations> \
+  -database "postgres://root:postgres@localhost:5432/demo_db?sslmode=disable" \
+  -verbose up
+```
+
+Here's what each option means:
+
+* `-path` points to the directory containing your migration files.
+* `-database` specifies the database connection string.
+* `up` applies all pending migrations.
+* `-verbose` prints detailed logs while the migration runs.
+
+![Run migration](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/migrate-up.png)
+
+If everything succeeds, you'll see the new table along with the inserted data.
+
+![Database after migration](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/up-migration-db.png)
+
+---
+
+## Step 5: Roll Back the Migration
+
+Now let's undo the changes.
+
+Open `000001_init_schema.down.sql` and drop the table that was created in the **up** migration.
+
+Run:
+
+```sh
+migrate \
+  -path <path-to-migrations> \
+  -database "postgres://root:postgres@localhost:5432/demo_db?sslmode=disable" \
+  -verbose down
+```
+
+![Rollback migration](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/migrate-down.png)
+
+Apply the rollback:
+
+![Run migrate down](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/apply-migrate-down.png)
+
+After the rollback, the table no longer exists.
+
+![Database after rollback](https://ik.imagekit.io/n8rtlkdw8/blogs/golang-migrate/down-migration-db.png)
+
+---
+
+## Conclusion
+
+You've now learned the basics of database migrations with **go-migrate**.
+
+In this tutorial, we:
+
+* Installed the go-migrate CLI.
+* Started a PostgreSQL database.
+* Created migration files.
+* Applied a migration.
+* Rolled it back.
+
+Using migrations keeps your database schema version-controlled, makes deployments safer, and ensures every developer works with the same database structure.
 
 Happy migrating!

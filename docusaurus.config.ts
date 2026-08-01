@@ -75,7 +75,7 @@ const config: Config = {
     navbar: {
       title: "About",
       logo: {
-        alt: "My Site Logo",
+        alt: "Rohan Thakur's Blog",
         src: "img/blog-logo.png",
       },
       items: [
