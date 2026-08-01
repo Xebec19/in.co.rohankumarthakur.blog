@@ -5,7 +5,8 @@ title: "Database Migrations in Go with go-migrate"
 date: 08/01/2026
 authors: rohan
 tags: ["web development", "go", "database"]
--------------------------------------------
+image: /img/jan-antonin-kolar-lRoX0shwjUQ-unsplash.jpg
+---
 
 ## Introduction
 
